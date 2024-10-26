@@ -150,6 +150,24 @@ button:hover {
 }
 
 /* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    button {
+        padding: 8px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+}
+
 @media (min-width: 600px) {
     .project-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -166,6 +184,16 @@ button:hover {
 
     nav ul li {
         margin: 0 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 5px 0;
     }
 }
 
@@ -195,23 +223,5 @@ button:hover {
     #home h1 {
         font-size: 3rem;
         color: #ffa500;
-    }
-}
-
-@media (max-width: 600px) {
-    h1 {
-        font-size: 2em;
-    }
-
-    section {
-        padding: 15px;
-    }
-
-    button {
-        padding: 8px;
-    }
-
-    body {
-        font-size: 14px;
     }
 }
