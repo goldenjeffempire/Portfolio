@@ -1,3 +1,4 @@
+
 /* Reset some default browser styles */
 * {
     margin: 0;
@@ -5,17 +6,35 @@
     box-sizing: border-box;
 }
 
-body {
+/* General Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     color: #333;
     background-color: #f4f4f4;
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Layout Styles */
+header, footer, section, main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header {
     background: #007BFF;
     color: white;
-    padding: 20px;
     text-align: center;
 }
 
@@ -25,16 +44,10 @@ h1 {
 
 main {
     padding: 20px;
-    max-width: 800px;
-    margin: auto;
 }
 
 section {
     margin: 20px 0;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 footer {
@@ -48,51 +61,41 @@ footer a {
     color: #007BFF;
 }
 
-/* Styles for the contact form */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-button {
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
-    background: #007BFF;
+/* Navigation Styles */
+#navbar {
+    position: sticky;
+    top: 0;
+    background-color: #333;
     color: white;
-    cursor: pointer;
+    padding: 10px 0;
+    z-index: 1000;
 }
 
-button:hover {
-    background: #0056b3;
-}
-
-/* Responsive design */
-/* Global Styles */
-body {
+#navbar ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
 }
 
-header, footer, section {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
+#navbar ul li {
+    margin: 0 15px;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+#navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+#navbar ul li a:hover {
+    color: #ffa500;
+}
+
+#navbar ul li a.active {
+    border-bottom: 2px solid #ffa500;
 }
 
 /* Form Styles */
@@ -101,7 +104,9 @@ form {
     flex-direction: column;
 }
 
-input, textarea {
+input[type="text"],
+input[type="email"],
+textarea {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
@@ -116,6 +121,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -140,4 +146,3 @@ button:hover {
         font-size: 14px;
     }
 }
-
