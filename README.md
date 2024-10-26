@@ -45,7 +45,7 @@ To set up and customize this project locally, follow these instructions:
    ```bash
    git clone https://github.com/goldenjeffempire/Portfolio.git
 
-## Customization
+## 🎨 Customization
 Personalize the portfolio by editing these sections:
 
 - Profile Details: Update your details in index.html.
