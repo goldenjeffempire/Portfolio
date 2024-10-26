@@ -43,4 +43,11 @@ To set up and customize this project locally, follow these instructions:
 ### Installation
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/portfolio-website.git
+   git clone https://github.com/goldenjeffempire/Portfolio.git
+
+## Customization
+Personalize the portfolio by editing these sections:
+
+- Profile Details: Update your details in index.html.
+- Projects Section: Customize your projects in the portfolio section.
+- Styles: Change colors, fonts, and animations in style.css to match your preferences.
