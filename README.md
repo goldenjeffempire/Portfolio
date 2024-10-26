@@ -51,3 +51,24 @@ Personalize the portfolio by editing these sections:
 - Profile Details: Update your details in index.html.
 - Projects Section: Customize your projects in the portfolio section.
 - Styles: Change colors, fonts, and animations in style.css to match your preferences.
+
+## 🌍 Deployment
+- Netlify
+  1. Create a New Site: In Netlify, link your GitHub repository.
+  2. Set Publish Directory: Use dist or public if required.
+  3. Deploy: Start the deployment and check the build log.
+
+- GitHub Pages
+  1.Push to GitHub: Ensure all files are in your repository.
+  2. Enable GitHub Pages: In the repository settings, activate GitHub Pages.
+  3. Access the Site: Your site will be available at https://goldenjeffempire.github.io/Portfolio/.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for suggestions or improvements.
+
+## :pencil: **Author**
+### :man: Jeffery Emuuodafevware
+- [Github](https://github.com/goldenjeffempire)
+- [Linkedin](https://www.linkedin.com/in/jeffery-emuodafevware)
+- [Twitter](https://x.com/goldenjeffemp)
