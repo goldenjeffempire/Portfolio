@@ -15,7 +15,7 @@ body, html {
     scroll-behavior: smooth;
     font-family: Arial, sans-serif;
     color: #333;
-    background-color: #f4f4f4;
+    background: linear-gradient(to bottom right, #4a90e2, #50e3c2); /* Gradient background */
     line-height: 1.6;
     padding: 10px;
 }
