@@ -37,7 +37,7 @@ header, footer, section, main {
 }
 
 header {
-    background: #007BFF;
+    background: linear-gradient(to right, #007BFF, #0056b3); /* Gradient background for header */
     color: white;
     text-align: center;
 }
@@ -57,6 +57,10 @@ main, section {
 footer {
     text-align: center;
     margin: 20px 0;
+    background: linear-gradient(to right, #007BFF, #50e3c2); /* Gradient background for footer */
+    color: white;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 footer a {
@@ -81,7 +85,7 @@ footer a {
 #navbar {
     position: sticky; /* or relative for testing */
     top: 0;
-    background-color: #333;
+    background: linear-gradient(to right, #333, #505050); /* Gradient background for navbar */
     color: white;
     padding: 10px 0;
     z-index: 1000; /* Ensure it sits above other content */
@@ -217,7 +221,7 @@ button:hover {
         align-items: center;
         justify-content: space-around;
         height: 80vh;
-        background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+        background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* Gradient for home section */
     }
 
     #home h1 {
