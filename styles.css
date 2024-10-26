@@ -61,39 +61,25 @@ footer a {
 }
 
 /* Navigation Styles */
-nav ul, #navbar ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul {
-    flex-direction: column;
-    align-items: center;
-}
-
-nav ul li, #navbar ul li {
-    margin: 10px 0;
-}
-
-@media (min-width: 600px) {
-    nav ul {
-        flex-direction: row;
-    }
-
-    nav ul li {
-        margin: 0 15px;
-    }
-}
-
 #navbar {
-    position: sticky;
+    position: sticky; /* or relative for testing */
     top: 0;
     background-color: #333;
     color: white;
     padding: 10px 0;
-    z-index: 1000;
+    z-index: 1000; /* Ensure it sits above other content */
+}
+
+#navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+#navbar ul li {
+    margin: 0 15px;
 }
 
 #navbar ul li a {
@@ -104,16 +90,11 @@ nav ul li, #navbar ul li {
 }
 
 #navbar ul li a:hover {
-    color: #ffa500;
+    color: #ffa500; /* Hover color */
 }
 
 #navbar ul li a.active {
     border-bottom: 2px solid #ffa500;
-}
-
-/* Project Grid */
-.project-grid {
-    grid-template-columns: 1fr;
 }
 
 /* Form Styles */
@@ -146,6 +127,11 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* Project Grid */
+.project-grid {
+    grid-template-columns: 1fr;
+}
+
 /* Responsive Design */
 @media (min-width: 600px) {
     .project-grid {
@@ -154,6 +140,15 @@ button:hover {
 
     #about, #skills, #contact {
         padding: 20px;
+    }
+
+    nav ul {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0 15px;
     }
 }
 
