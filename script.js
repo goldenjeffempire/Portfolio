@@ -7,9 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const highlightNav = () => {
         let index = sections.length;
 
-        while(--index && window.scrollY + 50 < sections[index].offsetTop) {}
+        while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
         navLinks.forEach((link) => link.classList.remove('active'));
-        navLinks[index].classList.add('active');
+        if (navLinks[index]) { // Ensure index is valid
+            navLinks[index].classList.add('active');
+        }
     };
 
     // Add smooth scrolling
