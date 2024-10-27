@@ -10,9 +10,9 @@ html {
 }
 
 body, html {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     color: #333;
-    background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg'); /* Gradient + Image background */
+    background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg');
     background-size: cover;
     line-height: 1.6;
     padding: 10px;
@@ -29,15 +29,15 @@ header, footer, section, main {
     padding: 20px;
     max-width: 800px;
     margin: auto;
-    background: rgba(255, 255, 255, 0.9); /* White background with transparency */
+    background: rgba(255, 255, 255, 0.9);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Header */
 header {
-    padding: 100px 0 50px; /* Adjusted for fixed navbar */
-    background: linear-gradient(to right, rgba(0, 123, 255, 0.9), rgba(0, 86, 179, 0.9)); /* Gradient background for header */
+    padding: 100px 0 50px;
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.9), rgba(0, 86, 179, 0.9));
     color: white;
     text-align: center;
 }
@@ -52,7 +52,7 @@ header p {
 
 /* Navigation */
 nav {
-    background: #0077cc; /* Navbar background color */
+    background: #0077cc;
     color: #fff;
     padding: 1rem 0;
     position: fixed;
@@ -76,11 +76,11 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     padding: 10px;
-    transition: color 0.3s;
+    transition: color 0.3s, border-bottom 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ffa500; /* Hover color */
+    color: #ffa500;
 }
 
 nav ul li a.active {
@@ -106,7 +106,7 @@ section {
 h2 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #0077cc; /* Section title color */
+    color: #0077cc;
 }
 
 /* Project Styles */
@@ -140,7 +140,7 @@ h2 {
 .profile-photo {
     width: 150px;
     height: auto;
-    border-radius: 50%; /* Circular profile picture */
+    border-radius: 50%;
     display: block;
     margin: 20px auto;
 }
@@ -154,10 +154,11 @@ section#resume a {
     color: #fff;
     border-radius: 5px;
     text-decoration: none;
+    transition: background 0.3s;
 }
 
 section#resume a:hover {
-    background: #005fa3; /* Darker shade on hover */
+    background: #005fa3;
 }
 
 /* Contact Form */
@@ -177,7 +178,14 @@ form textarea {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background: rgba(255, 255, 255, 0.8); /* Form input background with transparency */
+    background: rgba(255, 255, 255, 0.8);
+    transition: border-color 0.3s;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: #0077cc; /* Focus color */
 }
 
 form button {
@@ -191,14 +199,14 @@ form button {
 }
 
 form button:hover {
-    background: #005fa3; /* Darker shade on hover */
+    background: #005fa3;
 }
 
 /* Footer */
 footer {
     text-align: center;
     padding: 20px 0;
-    background: #0077cc; /* Footer background color */
+    background: #0077cc;
     color: #fff;
 }
 
@@ -270,7 +278,7 @@ footer {
         align-items: center;
         justify-content: space-around;
         height: 80vh;
-        background: linear-gradient(to right, rgba(15, 12, 41, 0.7), rgba(48, 43, 99, 0.7), rgba(36, 36, 62, 0.7)); /* Gradient for home section */
+        background: linear-gradient(to right, rgba(15, 12, 41, 0.7), rgba(48, 43, 99, 0.7), rgba(36, 36, 62, 0.7));
     }
 
     #home h1 {
@@ -283,7 +291,7 @@ footer {
 #about {
     text-align: center;
     padding: 50px;
-    background: rgba(244, 244, 244, 0.9); /* Light background with transparency */
+    background: rgba(244, 244, 244, 0.9);
 }
 
 .skills-grid {
@@ -294,7 +302,7 @@ footer {
 }
 
 .skill-item {
-    background-color: rgba(0, 123, 255, 0.8); /* Background with transparency */
+    background-color: rgba(0, 123, 255, 0.8);
     color: white;
     padding: 10px 20px;
     border-radius: 8px;
@@ -307,13 +315,13 @@ footer {
 
 .timeline li {
     padding: 10px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 blockquote {
     font-style: italic;
     color: #555;
-    border-left: 4px solid rgba(0, 123, 255, 0.8); /* Color with transparency */
+    border-left: 4px solid rgba(0, 123, 255, 0.8);
     padding-left: 10px;
     margin: 20px 0;
 }
@@ -327,14 +335,6 @@ blockquote {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
-}
-
-.resume-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
 }
 
 /* Dark Mode Styles */

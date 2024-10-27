@@ -3,10 +3,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // Smooth Scrolling for Navigation Links
     document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', (e) => {
             e.preventDefault();
-
-            const targetId = this.getAttribute('href');
+            const targetId = anchor.getAttribute('href');
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
@@ -21,29 +20,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Form Submission Handling
     const form = document.querySelector('#contact form');
     if (form) {
-        form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault(); // Prevent default form submission
             
             // Send form data to Formspree
             const formData = new FormData(form);
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
                 if (response.ok) {
-                    alert(`Thank you for your message! I'll get back to you soon.`);
+                    alert("Thank you for your message! I'll get back to you soon.");
                     form.reset(); // Reset the form after successful submission
                 } else {
                     alert("There was a problem submitting your message. Please try again.");
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 alert("There was a problem submitting your message. Please try again.");
-            });
+            }
         });
     }
 
@@ -57,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
         threshold: 0.1,
     };
 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("visible");
@@ -76,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let index = sections.length;
 
         while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
+        
         navLinks.forEach(link => link.classList.remove("active"));
         if (navLinks[index]) { // Ensure index is valid
             navLinks[index].classList.add("active");
