@@ -24,7 +24,7 @@ nav {
     top: 0; /* Aligns it to the top */
     left: 0; /* Aligns it to the left */
     right: 0; /* Aligns it to the right */
-    background-color: #0077cc; /* Background color for the navbar */
+    background-color: rgba(0, 119, 204, 0.85); /* Semi-transparent background for the navbar */
     color: white; /* Text color for navbar */
     z-index: 1000; /* Ensures it stays above other content */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
@@ -78,7 +78,7 @@ body.light {
 }
 
 nav.light {
-    background: #0077cc; /* Blue background */
+    background: rgba(0, 119, 204, 0.85); /* Semi-transparent blue background */
     color: #fff; /* White text */
 }
 
@@ -89,7 +89,7 @@ body.dark {
 }
 
 nav.dark {
-    background: #1e1e1e; /* Dark background for navbar */
+    background: rgba(30, 30, 30, 0.85); /* Semi-transparent dark background for navbar */
     color: #fff; /* White text */
 }
 
