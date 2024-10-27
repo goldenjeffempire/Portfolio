@@ -1,1 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeffery Onome Emuodafevware - Portfolio</title>
+    <meta name="description" content="Explore my portfolio, showcasing my skills and projects as a software developer.">
+    <meta name="keywords" content="software development, web development, programming, projects, portfolio">
+    <meta name="author" content="Jeffery Onome Emuodafevware">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicons@latest/css/devicons.min.css">
+    <style>
+        /* Add smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        nav {
+            background: #343a40;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: space-around;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background: #495057;
+        }
+        header {
+            text-align: center;
+            padding: 4rem 0;
+            background: #007bff;
+            color: #fff;
+        }
+        h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 0.5rem;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 1rem;
+            background: #fff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .project {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: #343a40;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        /* Smooth Scroll Button */
+        #scrollToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        #scrollToTop:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#home">My Portfolio</a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+                <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#social-media">Social Media</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <p>I am Jeffery Onome Emuodafevware, a software developer.</p>
+        <p>Software Engineer | Python Django Specialist | Web Developer</p>
+    </header>
+
+    <main>
+        <section id="about">
+            <div class="container text-center">
+                <img src="images/profile-photo.jpg" alt="Jeffery Onome Emuodafevware's Profile Photo" class="img-fluid rounded-circle mb-3" style="max-width: 150px;" />
+                <h2>About Me</h2>
+                <p>Hi! I'm Jeffery Onome Emuodafevware, a passionate software developer. I embrace a hands-on learning approach and excel in collaborative environments that foster creativity and innovation.</p>
+                <p>My interests include web development, artificial intelligence, and building innovative applications.</p>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2>Projects</h2>
+                <div class="project">
+                    <h3>Echoverse Blog Platform</h3>
+                    <p>Echoverse is a dynamic blog platform where users can share their thoughts and experiences.</p>
+                    <p><strong>Technologies Used:</strong> Django, HTML, CSS, JavaScript</p>
+                    <p><a class="btn btn-primary" href="https://github.com/goldenjeffempire/echoverse-platform.git" target="_blank">View Project</a></p>
+                </div>
+                <div class="project">
+                    <h3>GlobalXchange Trading App</h3>
+                    <p>GlobalXchange is a trading app enabling users to buy and sell various commodities.</p>
+                    <p><strong>Technologies Used:</strong> Django, React, PostgreSQL</p>
+                    <p><a class="btn btn-primary" href="https://github.com/goldenjeffempire/globalxchange-platform.git" target="_blank">View Project</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <h2>Skills</h2>
+                <ul class="list-unstyled">
+                    <li><strong>Programming Languages:</strong> Python, JavaScript, C++, Java</li>
+                    <li><strong>Web Development:</strong> Django, React, HTML, CSS</li>
+                    <li><strong>Databases:</strong> SQL, PostgreSQL, MySQL</li>
+                    <li><strong>Operating Systems:</strong> Linux, Windows, VS Code</li>
+                    <li><strong>Testing and Debugging:</strong> Unit Testing, Integration Testing</li>
+                    <li><strong>Soft Skills:</strong> Communication, Teamwork, Problem-solving</li>
+                    <li><strong>Data Structures:</strong> Arrays, Linked Lists, Trees</li>
+                    <li><strong>Other Skills:</strong> Version Control, Docker, Nginx</li>
+                </ul>
+                <div class="devicons text-center">
+                    <i class="devicon-html5-plain colored" title="HTML5"></i>
+                    <i class="devicon-css3-plain colored" title="CSS3"></i>
+                    <i class="devicon-javascript-plain colored" title="JavaScript"></i>
+                    <i class="devicon-django-plain colored" title="Django"></i>
+                    <i class="devicon-python-plain colored" title="Python"></i>
+                    <i class="devicon-react-original colored" title="React"></i>
+                    <i class="devicon-git-plain colored" title="Git"></i>
+                    <i class="devicon-docker-plain colored" title="Docker"></i>
+                    <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i>
+                    <i class="devicon-mysql-plain colored" title="MySQL"></i>
+                    <i class="devicon-nginx-original colored" title="Nginx"></i>
+                    <i class="devicon-c-plain colored" title="C"></i>
+                    <i class="devicon-flask-original colored" title="Flask"></i>
+                    <i class="devicon-vscode-plain colored" title="Visual Studio Code"></i>
+                    <i class="devicon-cplusplus-plain colored" title="C++"></i>
+                    <i class="devicon-sqlite-plain colored" title="SQLite"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume">
+            <div class="container">
+                <h2>Resume</h2>
+                <p>You can download my resume using the link below:</p>
+                <a class="btn btn-success" href="resume/my_resume.pdf" download>Download Resume</a>
+            </div>
+        </section>
+
+        <section id="experience">
+            <div class="container">
+                <h2>Experience</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <h3>Backend Software Engineer Intern</h3>
+                        <p>ALX Software Engineering Program (Remote)</p>
+                        <ul>   
+                            <li>Developed robust backend services for diverse applications.</li>
+                            <li>Designed and implemented RESTful APIs to enchance functionality.</li>
+                            <li>Collaborated with frontend developers on integration projects.</li>
+                            <li>Managed PostgreSQL databases to ensure data integrity and reliability</li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <h3>Lead Backend Developer</h3>
+                        <p>Capstone Project: GlobalXchange</p>
+                        <ul>
+                            <li>Led backend development for the trading app.</li>
+                            <li>Created and optimized RESTful APIs to improve performance.</li>
+                            <li>Achieved a 40% improvement in response time.</li>
+                            <li>Integrated advanced features, such as real-time notifications.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2>Contact Me</h2>
+                <form action="https://formspree.io/f/xjkvkpdn" method="POST">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="social-media">
+            <div class="container">
+                <h2>Follow Me</h2>
+                <p>Connect with me on social media:</p>
+                <ul class="list-unstyled">
+                    <li><a href="https://github.com/goldenjeffempire" target="_blank">GitHub</a></li>
+                    <li><a href="https://www.linkedin.com/in/jeffery-emuodafevware" target="_blank">LinkedIn</a></li>
+                    <li><a href="https://twitter.com/goldenjeffemp" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Jeffery Onome Emuodafevware. All rights reserved.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" onclick="scrollToTop()">
+        ↑
+    </button>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show/Hide Scroll to Top button
+        window.onscroll = function() {
+            const scrollToTopButton = document.getElementById("scrollToTop");
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                scrollToTopButton.style.display = "block";
+            } else {
+                scrollToTopButton.style.display = "none";
+            }
+        };
+
+        // Scroll to Top function
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
 
