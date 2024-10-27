@@ -24,7 +24,7 @@ nav {
     top: 0; /* Aligns it to the top */
     left: 0; /* Aligns it to the left */
     right: 0; /* Aligns it to the right */
-    background-color: rgba(0, 119, 204, 0.85); /* Semi-transparent background for the navbar */
+    background-color: rgba(135, 206, 250, 0.85); /* Light blue background with transparency */
     color: white; /* Text color for navbar */
     z-index: 1000; /* Ensures it stays above other content */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
@@ -78,7 +78,7 @@ body.light {
 }
 
 nav.light {
-    background: rgba(0, 119, 204, 0.85); /* Semi-transparent blue background */
+    background: rgba(135, 206, 250, 0.85); /* Light blue background for light theme */
     color: #fff; /* White text */
 }
 
@@ -145,42 +145,4 @@ section {
 
 h2 {
     font-size: 2rem;
-    margin-bottom: 20px;
-    color: #0077cc;
-}
-
-/* Project Styles */
-.project {
-    margin-bottom: 30px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-/* Skills */
-.devicons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-.devicons i {
-    font-size: 2rem;
-    margin: 10px;
-}
-
-/* About Section */
-.profile-photo {
-    width: 150px;
-    height: auto;
-    border-radius: 50%;
-    display: block;
-    margin: 20px auto;
-}
+    margin-b
