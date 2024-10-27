@@ -1,8 +1,56 @@
+// scripts.js
+
 document.addEventListener("DOMContentLoaded", () => {
+    // Smooth Scrolling for Navigation Links
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Form Submission Handling
+    const form = document.querySelector('#contact form');
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent default form submission
+            
+            // Send form data to Formspree
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert(`Thank you for your message! I'll get back to you soon.`);
+                    form.reset(); // Reset the form after successful submission
+                } else {
+                    alert("There was a problem submitting your message. Please try again.");
+                }
+            })
+            .catch(error => {
+                alert("There was a problem submitting your message. Please try again.");
+            });
+        });
+    }
+
+    // Fade-in effect using Intersection Observer
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll("#navbar ul li a");
 
-    // Fade-in effect using Intersection Observer
     const options = {
         root: null,
         rootMargin: "0px",
@@ -33,19 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
             navLinks[index].classList.add("active");
         }
     };
-
-    // Add smooth scrolling
-    navLinks.forEach(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute("href").substring(1);
-            const targetElement = document.getElementById(targetId);
-            window.scrollTo({
-                top: targetElement.offsetTop,
-                behavior: "smooth"
-            });
-        });
-    });
 
     window.addEventListener("scroll", highlightNav);
 });
