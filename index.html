@@ -3,209 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jeffery Onome Emuodafevware - Portfolio</title>
-    <meta name="description" content="Explore my portfolio showcasing my work as a software engineer and web developer.">
-    <meta name="keywords" content="software development, web development, portfolio, projects, contact">
-    <meta name="author" content="Jeffery Onome Emuodafevware">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.14.0/devicon.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom styles */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            text-align: center;
-            padding: 4rem;
-            background: #007bff;
-            color: #fff;
-        }
-
-        .profile-photo {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-        }
-
-        .container {
-            padding: 2rem;
-        }
-
-        .project, .timeline-item {
-            background: #f9f9f9;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #333;
-            color: #fff;
-        }
-
-        /* Scroll-to-top button */
-        #scrollTop {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: none;
-            background: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-        }
-    </style>
+    <title>Your Website Title</title>
+    <link rel="stylesheet" href="path/to/your/styles.css"> <!-- Update with your actual stylesheet path -->
+    <!-- Optional: Add Bootstrap CSS for better styling -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <header>
         <div class="container">
-            <a class="navbar-brand" href="#">Portfolio</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+            <h1>Welcome to My Portfolio</h1>
+            <nav>
+                <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <!-- Add other navigation links here -->
                 </ul>
-            </div>
+            </nav>
         </div>
-    </nav>
-
-    <header id="home">
-        <h1>Welcome to My Portfolio</h1>
-        <p>I am Jeffery Onome Emuodafevware, a software developer with a passion for building interactive applications.</p>
-        <p>Certified Backend Software Engineer | Python Django Specialist | Web Developer | ALX Software Engineering Graduate</p>
     </header>
 
     <main>
-        <section id="about" class="container">
-            <img src="images/profile-photo.jpg" alt="Your Photo" class="profile-photo">
-            <h2>About Me</h2>
-            <p>Hi! I'm Jeffery Onome Emuodafevware, a software engineer with a background in Computer Science...</p>
-        </section>
-        
-        <section id="projects" class="container">
-            <h2>Projects</h2>
-            <div class="project">
-                <h3>Echoverse Blog Platform</h3>
-                <p>Echoverse is a dynamic blog platform...</p>
-                <p><a href="https://github.com/goldenjeffempire/echoverse-platform" target="_blank">View on GitHub</a></p>
-            </div>
-            <div class="project">
-                <h3>GlobalXchange Trading App</h3>
-                <p>GlobalXchange is a trading app...</p>
-                <p><a href="https://github.com/goldenjeffempire/globalxchange-platform" target="_blank">View on GitHub</a></p>
-            </div>
-        </section>
+        <div class="container">
+            <!-- Other sections of your website -->
 
-        <section id="skills" class="container">
-            <h2>Skills</h2>
-            <div class="d-flex flex-wrap">
-                <i class="devicon-html5-plain colored fs-3" title="HTML"></i>
-                <i class="devicon-css3-plain colored fs-3" title="CSS"></i>
-                <i class="devicon-javascript-plain colored fs-3" title="JavaScript"></i>
-                <i class="devicon-python-plain colored fs-3" title="Python"></i>
-                <i class="devicon-django-plain colored fs-3" title="Django"></i>
-            </div>
-        </section>
-
-        <section id="resume" class="container">
-            <h2>Resume</h2>
-            <a href="resume/my_resume.pdf" download class="btn btn-primary">Download My Resume</a>
-        </section>
-
-        <section id="experience" class="container">
-            <h2>Experience</h2>
-            <div class="timeline-item">
-                <h3>Backend Software Engineer Intern</h3>
-                <p>ALX Software Engineering Program | Aug 2023 - Oct 2024</p>
-            </div>
-        </section>
-
-        <section id="contact" class="container">
-            <h2>Contact Me</h2>
-            <form action="https://formspree.io/f/xjkvkpdn" method="POST" class="needs-validation" novalidate>
-                <div class="mb-3">
-                    <label for="email" class="form-label">Your email:</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
-                    <div class="invalid-feedback">Please enter a valid email.</div>
+            <section id="experience" class="my-5">
+                <h2>Experience</h2>
+                <div class="mb-4">
+                    <h3>Backend Software Engineer Intern</h3>
+                    <h4>ALX Software Engineering Program (Remote)</h4>
+                    <p>August 2023 - October 2024</p>
+                    <ul>
+                        <li>Developed backend services using Python and Django.</li>
+                        <li>Created RESTful APIs for seamless data exchange.</li>
+                        <li>Integrated backend with frontend using HTML, CSS, JavaScript.</li>
+                        <li>Managed PostgreSQL databases, optimizing query performance.</li>
+                        <li>Implemented secure authentication and authorization features.</li>
+                    </ul>
                 </div>
-                <div class="mb-3">
-                    <label for="message" class="form-label">Message:</label>
-                    <textarea class="form-control" id="message" name="message" required></textarea>
-                    <div class="invalid-feedback">Message is required.</div>
+                <div>
+                    <h3>Lead Backend Developer</h3>
+                    <h4>Capstone Project: GlobalXchange</h4>
+                    <p>June 2024 - October 2024</p>
+                    <ul>
+                        <li>Led backend development for a trading app using Django & PostgreSQL.</li>
+                        <li>Built RESTful APIs for frontend-backend communication.</li>
+                        <li>Enhanced performance by 40% through optimization.</li>
+                        <li>Integrated features like user profiles and transaction history.</li>
+                    </ul>
                 </div>
-                <button type="submit" class="btn btn-primary">Send</button>
-            </form>
-        </section>
+            </section>
+
+            <section id="contact" class="my-5">
+                <h2>Contact Me</h2>
+                <form action="https://formspree.io/f/xjkvkpdn" method="POST" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Your email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                        <div class="invalid-feedback">Please enter a valid email.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message:</label>
+                        <textarea class="form-control" id="message" name="message" required></textarea>
+                        <div class="invalid-feedback">Message is required.</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </section>
+        </div>
     </main>
 
-    <footer>
+    <footer class="text-center py-4">
         <p>&copy; 2024 Jeffery Onome Emuodafevware. All rights reserved.</p>
     </footer>
 
-    <!-- Scroll to top button -->
-    <button id="scrollTop" title="Go to top" onclick="scrollToTop()">&#9650;</button>
-
-    <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Scroll-to-top button
-        window.onscroll = function() { toggleScrollTopButton(); };
-
-        function toggleScrollTopButton() {
-            const scrollTopButton = document.getElementById("scrollTop");
-            scrollTopButton.style.display = (window.scrollY > 300) ? "block" : "none";
-        }
-
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-        }
-
-        // Form validation
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                const forms = document.getElementsByClassName('needs-validation');
-                Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="path/to/your/script.js"></script>
 </body>
 </html>
