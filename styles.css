@@ -18,10 +18,57 @@ body, html {
     padding: 10px;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+/* Ensure the navbar is fixed at the top */
+nav {
+    position: fixed; /* Fixes the navbar at the top */
+    top: 0; /* Aligns it to the top */
+    left: 0; /* Aligns it to the left */
+    right: 0; /* Aligns it to the right */
+    background-color: #0077cc; /* Background color for the navbar */
+    color: white; /* Text color for navbar */
+    z-index: 1000; /* Ensures it stays above other content */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    padding: 1rem 0; /* Padding for navbar */
+}
+
+/* Optional: add padding to body to prevent overlap with the navbar */
+body {
+    padding-top: 60px; /* Adjust based on navbar height */
+}
+
+/* Navigation Styles */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: inherit; /* Make link colors inherit from nav color */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Make links bold */
+    padding: 10px; /* Adjust padding for clickable area */
+    transition: color 0.3s, border-bottom 0.3s; /* Smooth transition for hover effects */
+}
+
+nav a:hover {
+    color: #ffa500; /* Hover color */
+    text-decoration: underline; /* Underline on hover for links */
+}
+
+/* Style for the active link */
+nav a.active {
+    border-bottom: 2px solid #ffa500; /* Active link style */
+}
+
+/* Accessibility focus state */
+nav a:focus {
+    outline: 2px solid #ffa500; /* Outline for focused links */
+    outline-offset: 2px; /* Space between outline and text */
 }
 
 /* Light Theme Styles */
@@ -54,20 +101,6 @@ nav ul li a.dark {
     color: #fff; /* White text color for links in dark mode */
 }
 
-nav ul li a:hover {
-    color: #ffa500; /* Hover color remains the same */
-}
-
-nav ul li a.active {
-    border-bottom: 2px solid #ffa500; /* Active link style */
-}
-
-/* Optional: Add a focus state for accessibility */
-nav ul li a:focus {
-    outline: 2px solid #ffa500; /* Outline for focused links */
-    outline-offset: 2px; /* Space between outline and text */
-}
-
 /* Layout Styles */
 header, footer, section, main {
     padding: 20px;
@@ -92,43 +125,6 @@ header h1 {
 
 header p {
     font-size: 1.2rem;
-}
-
-/* Navigation */
-nav {
-    background: #0077cc;
-    color: #fff;
-    padding: 1rem 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px;
-    transition: color 0.3s, border-bottom 0.3s;
-}
-
-nav ul li a:hover {
-    color: #ffa500;
-}
-
-nav ul li a.active {
-    border-bottom: 2px solid #ffa500;
 }
 
 /* Main Content */
