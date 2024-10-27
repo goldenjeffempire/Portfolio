@@ -22,7 +22,15 @@
             background-color: #f8f9fa;
         }
         nav {
-            background: #343a40;
+            background: #0077cc
+            color: #fff; /* White text color */
+            padding: 1rem 0; /* Vertical padding for the navbar */
+            position: fixed; /* Fixed position at the top */
+            width: 100%; /* Full width */
+            top: 0; /* Stick to the top */
+            z-index: 1000; /* On top of other elements */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
         }
         nav ul {
             list-style: none;
@@ -94,6 +102,8 @@
 </head>
 <body>
 
+    <!-- Add this somewhere in your HTML, e.g., in your navbar -->
+    <button id="theme-toggler">Toggle Dark/Light Mode</button>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
