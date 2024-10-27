@@ -1,21 +1,19 @@
-/* Reset some default browser styles */
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Other global styles */
 html {
     scroll-behavior: smooth;
 }
 
-/* General Styles */
 body, html {
-    scroll-behavior: smooth;
     font-family: Arial, sans-serif;
     color: #333;
-    background: linear-gradient(to bottom right, #4a90e2, #50e3c2); /* Gradient background */
+    background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg'); /* Gradient + Image background */
+    background-size: cover;
     line-height: 1.6;
     padding: 10px;
 }
@@ -31,42 +29,177 @@ header, footer, section, main {
     padding: 20px;
     max-width: 800px;
     margin: auto;
-    background: white;
+    background: rgba(255, 255, 255, 0.9); /* White background with transparency */
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Header */
 header {
-    background: linear-gradient(to right, #007BFF, #0056b3); /* Gradient background for header */
+    padding: 100px 0 50px; /* Adjusted for fixed navbar */
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.9), rgba(0, 86, 179, 0.9)); /* Gradient background for header */
     color: white;
     text-align: center;
 }
 
-h1 {
-    font-size: 2.5em;
+header h1 {
+    font-size: 2.5rem;
 }
 
-h2, h3 {
+header p {
+    font-size: 1.2rem;
+}
+
+/* Navigation */
+nav {
+    background: #0077cc; /* Navbar background color */
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ffa500; /* Hover color */
+}
+
+nav ul li a.active {
+    border-bottom: 2px solid #ffa500;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+/* Sections */
+section {
+    margin: 40px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #0077cc; /* Section title color */
+}
+
+/* Project Styles */
+.project {
+    margin-bottom: 30px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Skills */
+.devicons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.devicons i {
+    font-size: 2rem;
+    margin: 10px;
+}
+
+/* About Section */
+.profile-photo {
+    width: 150px;
+    height: auto;
+    border-radius: 50%; /* Circular profile picture */
+    display: block;
+    margin: 20px auto;
+}
+
+/* Resume Link */
+section#resume a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background: #0077cc;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+section#resume a:hover {
+    background: #005fa3; /* Darker shade on hover */
+}
+
+/* Contact Form */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
     margin-bottom: 10px;
 }
 
-main, section {
-    margin: 20px 0;
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.8); /* Form input background with transparency */
 }
 
+form button {
+    padding: 10px;
+    background: #0077cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+form button:hover {
+    background: #005fa3; /* Darker shade on hover */
+}
+
+/* Footer */
 footer {
     text-align: center;
-    margin: 20px 0;
-    background: linear-gradient(to right, #007BFF, #50e3c2); /* Gradient background for footer */
-    color: white;
-    border-radius: 8px;
-    padding: 10px;
-}
-
-footer a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #007BFF;
+    padding: 20px 0;
+    background: #0077cc; /* Footer background color */
+    color: #fff;
 }
 
 /* Fade-in effect styles */
@@ -79,78 +212,6 @@ footer a {
 .fade-in.visible {
     opacity: 1;
     transform: translateY(0);
-}
-
-/* Navigation Styles */
-#navbar {
-    position: sticky; /* or relative for testing */
-    top: 0;
-    background: linear-gradient(to right, #333, #505050); /* Gradient background for navbar */
-    color: white;
-    padding: 10px 0;
-    z-index: 1000; /* Ensure it sits above other content */
-}
-
-#navbar ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
-}
-
-#navbar ul li {
-    margin: 0 15px;
-}
-
-#navbar ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 10px;
-    transition: color 0.3s;
-}
-
-#navbar ul li a:hover {
-    color: #ffa500; /* Hover color */
-}
-
-#navbar ul li a.active {
-    border-bottom: 2px solid #ffa500;
-}
-
-/* Form Styles */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-input[type="text"],
-input[type="email"],
-textarea {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-/* Button Styles */
-button {
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Project Grid */
-.project-grid {
-    grid-template-columns: 1fr;
 }
 
 /* Responsive Design */
@@ -173,10 +234,6 @@ button:hover {
 }
 
 @media (min-width: 600px) {
-    .project-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     #about, #skills, #contact {
         padding: 20px;
     }
@@ -202,18 +259,10 @@ button:hover {
 }
 
 @media (min-width: 1024px) {
-    .project-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
     #about, #skills, #contact {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
-    }
-
-    .project-card {
-        height: 300px;
     }
 
     #home {
@@ -221,11 +270,79 @@ button:hover {
         align-items: center;
         justify-content: space-around;
         height: 80vh;
-        background: linear-gradient(to right, #0f0c29, #302b63, #24243e); /* Gradient for home section */
+        background: linear-gradient(to right, rgba(15, 12, 41, 0.7), rgba(48, 43, 99, 0.7), rgba(36, 36, 62, 0.7)); /* Gradient for home section */
     }
 
     #home h1 {
         font-size: 3rem;
         color: #ffa500;
     }
+}
+
+/* Specific Section Styles */
+#about {
+    text-align: center;
+    padding: 50px;
+    background: rgba(244, 244, 244, 0.9); /* Light background with transparency */
+}
+
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.skill-item {
+    background-color: rgba(0, 123, 255, 0.8); /* Background with transparency */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.timeline {
+    list-style-type: none;
+}
+
+.timeline li {
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Subtle border */
+}
+
+blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid rgba(0, 123, 255, 0.8); /* Color with transparency */
+    padding-left: 10px;
+    margin: 20px 0;
+}
+
+#contact {
+    text-align: center;
+    padding: 50px;
+}
+
+#contact input, #contact textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.resume-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode .container {
+    background-color: #444;
 }
