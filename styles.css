@@ -24,6 +24,50 @@ img {
     display: block;
 }
 
+/* Light Theme Styles */
+body.light {
+    background-color: #f4f4f4; /* Light background */
+    color: #333; /* Dark text */
+}
+
+nav.light {
+    background: #0077cc; /* Blue background */
+    color: #fff; /* White text */
+}
+
+/* Dark Theme Styles */
+body.dark {
+    background-color: #121212; /* Dark background */
+    color: #ffffff; /* Light text */
+}
+
+nav.dark {
+    background: #1e1e1e; /* Dark background for navbar */
+    color: #fff; /* White text */
+}
+
+nav ul li a.light {
+    color: #fff; /* White text color for links in light mode */
+}
+
+nav ul li a.dark {
+    color: #fff; /* White text color for links in dark mode */
+}
+
+nav ul li a:hover {
+    color: #ffa500; /* Hover color remains the same */
+}
+
+nav ul li a.active {
+    border-bottom: 2px solid #ffa500; /* Active link style */
+}
+
+/* Optional: Add a focus state for accessibility */
+nav ul li a:focus {
+    outline: 2px solid #ffa500; /* Outline for focused links */
+    outline-offset: 2px; /* Space between outline and text */
+}
+
 /* Layout Styles */
 header, footer, section, main {
     padding: 20px;
@@ -142,4 +186,5 @@ h2 {
     height: auto;
     border-radius: 50%;
     display: block;
-    margin: 20px
+    margin: 20px auto;
+}
