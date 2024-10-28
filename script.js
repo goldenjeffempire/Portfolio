@@ -1,82 +1,78 @@
 function toggleTheme() {
     const body = document.body;
-    body.classList.toggle('dark');
-    body.classList.toggle('light');
+    const nav = document.querySelector('nav');
+
+    // Toggle between dark and light themes
+    const isLight = body.classList.contains('light');
+    body.classList.toggle('light', !isLight);
+    body.classList.toggle('dark', isLight);
+    nav.classList.toggle('light', !isLight);
+    nav.classList.toggle('dark', isLight);
+
+    // Update button text based on the theme
+    const themeToggler = document.getElementById("theme-toggler");
+    themeToggler.textContent = isLight ? "Switch to Dark Mode" : "Switch to Light Mode";
+
+    // Save the user's preference in local storage
+    localStorage.setItem("theme", isLight ? "dark" : "light");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggler = document.getElementById("theme-toggler");
 
     // Check for saved user preference and set initial theme
-    const currentTheme = localStorage.getItem("theme") || "light"; // Default to light theme
-    document.body.classList.add(currentTheme);
-    document.querySelector('nav').classList.add(currentTheme);
+    const savedTheme = localStorage.getItem("theme") || "light"; // Default to light theme
+    document.body.classList.add(savedTheme);
+    document.querySelector('nav').classList.add(savedTheme);
+    themeToggler.textContent = savedTheme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode";
 
     // Toggler functionality
-    themeToggler.addEventListener("click", () => {
-        // Toggle between dark and light themes
-        const isLight = document.body.classList.contains("light");
-        
-        document.body.classList.toggle("light", !isLight);
-        document.body.classList.toggle("dark", isLight);
-        document.querySelector('nav').classList.toggle("light", !isLight);
-        document.querySelector('nav').classList.toggle("dark", isLight);
-
-        // Update button text based on the theme
-        themeToggler.textContent = isLight ? "Switch to Dark Mode" : "Switch to Light Mode";
-
-        // Save the user's preference
-        localStorage.setItem("theme", isLight ? "dark" : "light");
-    });
+    themeToggler.addEventListener("click", toggleTheme);
 
     // Smooth Scrolling for Navigation Links
-    const smoothScroll = () => {
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                e.preventDefault(); // Prevent default anchor click behavior
-                const targetId = anchor.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
+    document.querySelectorAll('nav a').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default anchor click behavior
+            const targetId = anchor.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
 
-                if (targetSection) {
-                    targetSection.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start',
-                    });
-                }
-            });
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                });
+            }
         });
-    };
+    });
 
     // Form Submission Handling
-    const handleFormSubmission = () => {
-        const form = document.querySelector('#contact form');
-        if (form) {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault(); // Prevent default form submission
+    const form = document.querySelector('#contact form');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent default form submission
 
-                // Prepare and send form data to Formspree
-                const formData = new FormData(form);
-                try {
-                    const response = await fetch(form.action, {
-                        method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json',
-                        },
-                    });
+            // Prepare and send form data to Formspree
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
 
-                    if (response.ok) {
-                        alert("Thank you for your message! I'll get back to you soon.");
-                        form.reset(); // Reset the form after successful submission
-                    } else {
-                        alert("There was a problem submitting your message. Please try again.");
-                    }
-                } catch (error) {
+                if (response.ok) {
+                    alert("Thank you for your message! I'll get back to you soon.");
+                    form.reset(); // Reset the form after successful submission
+                } else {
                     alert("There was a problem submitting your message. Please try again.");
                 }
-            });
-        }
-    };
+            } catch (error) {
+                alert("There was a problem submitting your message. Please try again.");
+            }
+        });
+    }
 
     // Fade-in effect using Intersection Observer
     const fadeInEffect = () => {
@@ -119,7 +115,5 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Initialize Functions
-    smoothScroll();
-    handleFormSubmission();
-    fadeInEffect();
+    fadeInEffect(); // Call fadeInEffect first
 });
