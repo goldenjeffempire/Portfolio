@@ -1,34 +1,36 @@
-/* General Styles */
+/* Basic reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
 }
 
+/* General Styles */
 body, html {
     font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    padding: 10px;
     color: #333;
     background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg');
     background-size: cover;
-    line-height: 1.6;
-    padding: 10px;
 }
 
 /* Ensure the navbar is fixed at the top */
 nav {
-    position: fixed; /* Fixes the navbar at the top */
-    top: 0; /* Aligns it to the top */
-    left: 0; /* Aligns it to the left */
-    right: 0; /* Aligns it to the right */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     background-color: rgba(135, 206, 250, 0.85); /* Light blue background with transparency */
-    color: white; /* Text color for navbar */
-    z-index: 1000; /* Ensures it stays above other content */
+    color: white;
+    z-index: 1000;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    padding: 1rem 0; /* Padding for navbar */
+    padding: 10px 0; /* Padding for navbar */
 }
 
 /* Optional: add padding to body to prevent overlap with the navbar */
@@ -71,7 +73,7 @@ nav a:focus {
     outline-offset: 2px; /* Space between outline and text */
 }
 
-/* Light Theme Styles */
+/* Light and Dark Mode Styles */
 body.light {
     background-color: #f4f4f4; /* Light background */
     color: #333; /* Dark text */
@@ -82,7 +84,6 @@ nav.light {
     color: #fff; /* White text */
 }
 
-/* Dark Theme Styles */
 body.dark {
     background-color: #121212; /* Dark background */
     color: #ffffff; /* Light text */
@@ -111,7 +112,7 @@ header, footer, section, main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
+/* Header Styles */
 header {
     padding: 100px 0 50px;
     background: linear-gradient(to right, rgba(0, 123, 255, 0.9), rgba(0, 86, 179, 0.9));
@@ -127,7 +128,7 @@ header p {
     font-size: 1.2rem;
 }
 
-/* Main Content */
+/* Main Content Styles */
 main {
     padding: 20px;
 }
@@ -137,6 +138,7 @@ section {
     margin: 40px 0;
 }
 
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -145,4 +147,5 @@ section {
 
 h2 {
     font-size: 2rem;
-    margin-b
+    margin-bottom: 20px; /* Ensure consistent spacing below headings */
+}
