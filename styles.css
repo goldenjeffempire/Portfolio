@@ -11,12 +11,11 @@ html {
 }
 
 /* General Styles */
-body, html {
+body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg') no-repeat center center fixed;
-    background-size: cover;
+    background-color: #f4f4f4; /* Default light background */
+    color: #333; /* Default dark text */
 }
 
 /* Navbar Styles */
@@ -29,8 +28,7 @@ nav {
     color: #fff;
     z-index: 1000;
     padding: 1rem 0; /* Padding for navbar */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow for better depth */
-    transition: background-color 0.3s; /* Smooth background transition */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Shadow for depth */
 }
 
 /* Padding to body to prevent overlap with the navbar */
@@ -43,7 +41,6 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
-    align-items: center; /* Center items vertically */
 }
 
 nav ul li {
@@ -54,64 +51,31 @@ nav a {
     color: #fff; /* White link color */
     text-decoration: none; /* Remove underline from links */
     font-weight: bold; /* Make links bold */
-    padding: 10px 15px; /* Add padding for a larger clickable area */
-    border-radius: 5px; /* Rounded corners for buttons */
+    padding: 10px 15px; /* Add padding for larger clickable area */
+    border-radius: 5px; /* Rounded corners */
     transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 nav a:hover {
     background-color: rgba(255, 165, 0, 0.8); /* Orange background on hover */
-    color: #fff; /* Keep text color white on hover */
 }
 
 /* Style for the active link */
 nav a.active {
     background-color: #ffa500; /* Active link background */
-    color: #fff; /* White text */
 }
 
 /* Accessibility focus state */
 nav a:focus {
     outline: 2px solid #ffa500; /* Outline for focused links */
-    outline-offset: 2px; /* Space between outline and text */
-}
-
-/* Light and Dark Mode Styles */
-body.light {
-    background-color: #f4f4f4; /* Light background */
-    color: #333; /* Dark text */
-}
-
-nav.light {
-    background: rgba(135, 206, 250, 0.9); /* Light blue background for light theme */
-}
-
-body.dark {
-    background-color: #121212; /* Dark background */
-    color: #ffffff; /* Light text */
-}
-
-nav.dark {
-    background: rgba(30, 30, 30, 0.9); /* Semi-transparent dark background for navbar */
 }
 
 /* Layout Styles */
-header, footer, section, main {
-    padding: 40px; /* Increased padding for better spacing */
-    max-width: 1200px;
-    margin: auto;
-    background: rgba(255, 255, 255, 0.95); /* Slightly more opaque white background */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for more depth */
-}
-
-/* Header Styles */
 header {
-    padding: 120px 0 60px; /* Adjusted for more breathing space */
+    padding: 120px 0 60px; /* Space for the header */
     background: linear-gradient(to right, rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8));
     color: white;
     text-align: center;
-    position: relative; /* For potential absolute positioning of elements */
 }
 
 header h1 {
@@ -120,7 +84,7 @@ header h1 {
 }
 
 header p {
-    font-size: 1.3rem; /* Slightly larger subtitle font */
+    font-size: 1.3rem; /* Subtitle font size */
 }
 
 /* Main Content Styles */
@@ -133,16 +97,24 @@ section {
     margin: 50px 0; /* Increased margin for separation */
 }
 
-/* Container */
+/* Container Styles */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 1.5rem;
+    background: #fff; /* White background for content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 10px; /* Rounded corners */
 }
 
-h2 {
-    font-size: 2.5rem; /* Increased heading size */
-    margin-bottom: 30px; /* More space below headings */
+/* Project and Timeline Styles */
+.project,
+.timeline li {
+    margin: 1rem 0;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9; /* Slightly off-white for projects */
 }
 
 /* Footer Styles */
@@ -155,6 +127,38 @@ footer {
     border-radius: 10px; /* Rounded corners for footer */
 }
 
+/* Scroll to Top Button Styles */
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+#scrollToTop:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #222; /* Dark background for dark mode */
+    color: #ddd; /* Light text */
+}
+
+body.dark-mode nav {
+    background: #555; /* Dark navbar background */
+}
+
+body.dark-mode footer {
+    background: #555; /* Dark footer background */
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
     nav ul {
@@ -162,18 +166,14 @@ footer {
     }
 
     header h1 {
-        font-size: 2.5rem; /* Adjust header font size on smaller screens */
+        font-size: 2.5rem; /* Adjust header font size */
     }
 
     header p {
         font-size: 1.1rem; /* Adjust subtitle font size */
     }
 
-    h2 {
-        font-size: 2rem; /* Adjust h2 font size */
-    }
-
-    nav a {
-        padding: 8px 12px; /* Adjust padding for smaller screens */
+    .container {
+        padding: 1rem; /* Adjust container padding for smaller screens */
     }
 }
