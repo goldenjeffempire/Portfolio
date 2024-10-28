@@ -1,40 +1,46 @@
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('dark');
+    body.classList.toggle('light');
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggler = document.getElementById("theme-toggler");
 
-    // Check for saved user preference
+    // Check for saved user preference and set initial theme
     const currentTheme = localStorage.getItem("theme") || "light"; // Default to light theme
     document.body.classList.add(currentTheme);
     document.querySelector('nav').classList.add(currentTheme);
 
     // Toggler functionality
     themeToggler.addEventListener("click", () => {
-        // Toggle between dark and light
-        if (document.body.classList.contains("light")) {
-            document.body.classList.replace("light", "dark");
-            document.querySelector('nav').classList.replace("light", "dark");
-            themeToggler.textContent = "Switch to Light Mode"; // Update button text
-        } else {
-            document.body.classList.replace("dark", "light");
-            document.querySelector('nav').classList.replace("dark", "light");
-            themeToggler.textContent = "Switch to Dark Mode"; // Update button text
-        }
+        // Toggle between dark and light themes
+        const isLight = document.body.classList.contains("light");
+        
+        document.body.classList.toggle("light", !isLight);
+        document.body.classList.toggle("dark", isLight);
+        document.querySelector('nav').classList.toggle("light", !isLight);
+        document.querySelector('nav').classList.toggle("dark", isLight);
+
+        // Update button text based on the theme
+        themeToggler.textContent = isLight ? "Switch to Dark Mode" : "Switch to Light Mode";
 
         // Save the user's preference
-        localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light");
+        localStorage.setItem("theme", isLight ? "dark" : "light");
     });
 
     // Smooth Scrolling for Navigation Links
     const smoothScroll = () => {
         document.querySelectorAll('nav a').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
-                e.preventDefault();
+                e.preventDefault(); // Prevent default anchor click behavior
                 const targetId = anchor.getAttribute('href');
                 const targetSection = document.querySelector(targetId);
 
                 if (targetSection) {
                     targetSection.scrollIntoView({
                         behavior: 'smooth',
-                        block: 'start'
+                        block: 'start',
                     });
                 }
             });
@@ -48,15 +54,15 @@ document.addEventListener("DOMContentLoaded", () => {
             form.addEventListener('submit', async (e) => {
                 e.preventDefault(); // Prevent default form submission
 
-                // Send form data to Formspree
+                // Prepare and send form data to Formspree
                 const formData = new FormData(form);
                 try {
                     const response = await fetch(form.action, {
                         method: 'POST',
                         body: formData,
                         headers: {
-                            'Accept': 'application/json'
-                        }
+                            'Accept': 'application/json',
+                        },
                     });
 
                     if (response.ok) {
@@ -87,14 +93,14 @@ document.addEventListener("DOMContentLoaded", () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add("visible");
-                    observer.unobserve(entry.target);
+                    observer.unobserve(entry.target); // Stop observing the target after it's visible
                 }
             });
         }, options);
 
         sections.forEach(section => {
-            section.classList.add("fade-in");
-            observer.observe(section);
+            section.classList.add("fade-in"); // Add fade-in class for animations
+            observer.observe(section); // Observe each section for fade-in effect
         });
 
         // Highlight active section in the navbar
@@ -104,12 +110,12 @@ document.addEventListener("DOMContentLoaded", () => {
             while (--index && window.scrollY + 50 < sections[index].offsetTop) {}
 
             navLinks.forEach(link => link.classList.remove("active"));
-            if (navLinks[index]) { // Ensure index is valid
+            if (navLinks[index]) { // Ensure index is valid before accessing
                 navLinks[index].classList.add("active");
             }
         };
 
-        window.addEventListener("scroll", highlightNav);
+        window.addEventListener("scroll", highlightNav); // Update active link on scroll
     };
 
     // Initialize Functions
