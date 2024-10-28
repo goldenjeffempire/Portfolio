@@ -14,8 +14,9 @@ html {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f4; /* Default light background */
-    color: #333; /* Default dark text */
+    background-color: #f7f7f7; /* Neutral background */
+    color: #333; /* Standard dark text for readability */
+    padding-top: 60px; /* Space for navbar */
 }
 
 /* Navbar Styles */
@@ -24,19 +25,13 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(135, 206, 250, 0.9); /* Light blue background with transparency */
+    background-color: #333; /* Dark, professional color */
     color: #fff;
     z-index: 1000;
-    padding: 1rem 0; /* Padding for navbar */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+    padding: 0.8rem 0; /* Adjusted padding */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-/* Padding to body to prevent overlap with the navbar */
-body {
-    padding-top: 70px; /* Adjust based on navbar height */
-}
-
-/* Navigation Styles */
 nav ul {
     list-style: none;
     display: flex;
@@ -44,87 +39,75 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 20px; /* Increased margin for better spacing */
+    margin: 0 15px; /* Moderate spacing for links */
 }
 
 nav a {
-    color: #fff; /* White link color */
-    text-decoration: none; /* Remove underline from links */
-    font-weight: bold; /* Make links bold */
-    padding: 10px 15px; /* Add padding for larger clickable area */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500; /* Slightly bold */
+    padding: 8px 12px;
+    transition: color 0.3s; /* Smooth transition on hover */
 }
 
 nav a:hover {
-    background-color: rgba(255, 165, 0, 0.8); /* Orange background on hover */
+    color: #ffa500; /* Subtle highlight on hover */
 }
 
-/* Style for the active link */
-nav a.active {
-    background-color: #ffa500; /* Active link background */
-}
-
-/* Accessibility focus state */
-nav a:focus {
-    outline: 2px solid #ffa500; /* Outline for focused links */
-}
-
-/* Layout Styles */
+/* Header Styles */
 header {
-    padding: 120px 0 60px; /* Space for the header */
-    background: linear-gradient(to right, rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8));
-    color: white;
+    padding: 100px 0 50px;
+    background-color: #222; /* Dark, minimalistic */
+    color: #fff;
     text-align: center;
 }
 
 header h1 {
-    font-size: 3rem; /* Larger header font size */
-    margin-bottom: 10px; /* Space below heading */
+    font-size: 2.5rem; /* Large heading */
+    margin-bottom: 10px;
 }
 
 header p {
-    font-size: 1.3rem; /* Subtitle font size */
+    font-size: 1.2rem; /* Subtitle size */
+    color: #ccc; /* Light gray for contrast */
 }
 
 /* Main Content Styles */
 main {
-    padding: 20px;
+    padding: 30px 20px;
 }
 
-/* Sections */
 section {
-    margin: 50px 0; /* Increased margin for separation */
+    margin: 40px 0; /* Separate sections */
 }
 
 /* Container Styles */
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 1.5rem;
-    background: #fff; /* White background for content */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    border-radius: 10px; /* Rounded corners */
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Very light shadow */
+    border-radius: 8px;
 }
 
 /* Project and Timeline Styles */
 .project,
 .timeline li {
     margin: 1rem 0;
-    padding: 1.5rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background: #f9f9f9; /* Slightly off-white for projects */
+    padding: 1rem;
+    border: 1px solid #e1e1e1; /* Subtle border */
+    border-radius: 5px;
+    background: #f9f9f9; /* Light background */
 }
 
 /* Footer Styles */
 footer {
     text-align: center;
     padding: 20px 0;
-    background-color: rgba(135, 206, 250, 0.9);
+    background-color: #333;
     color: #fff;
-    margin-top: 20px; /* Space above footer */
-    border-radius: 10px; /* Rounded corners for footer */
+    margin-top: 40px;
 }
 
 /* Scroll to Top Button Styles */
@@ -132,48 +115,49 @@ footer {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background: #007bff; /* Blue background */
+    background: #333;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     padding: 10px;
     cursor: pointer;
     display: none; /* Hidden by default */
+    transition: background 0.3s;
 }
 
 #scrollToTop:hover {
-    background: #0056b3; /* Darker blue on hover */
+    background: #555; /* Lighter on hover */
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
-    background-color: #222; /* Dark background for dark mode */
-    color: #ddd; /* Light text */
+    background-color: #121212;
+    color: #ccc;
 }
 
 body.dark-mode nav {
-    background: #555; /* Dark navbar background */
+    background: #1e1e1e;
 }
 
 body.dark-mode footer {
-    background: #555; /* Dark footer background */
+    background: #1e1e1e;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     nav ul {
-        flex-direction: column; /* Stack links vertically on smaller screens */
+        flex-direction: column;
     }
 
     header h1 {
-        font-size: 2.5rem; /* Adjust header font size */
+        font-size: 2rem;
     }
 
     header p {
-        font-size: 1.1rem; /* Adjust subtitle font size */
+        font-size: 1rem;
     }
 
     .container {
-        padding: 1rem; /* Adjust container padding for smaller screens */
+        padding: 1rem;
     }
 }
