@@ -14,6 +14,7 @@ html {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
+<<<<<<< HEAD
     background-color: #f7f7f7; /* Neutral background */
     color: #333; /* Standard dark text for readability */
     padding-top: 60px; /* Space for navbar */
@@ -25,13 +26,27 @@ nav {
     top: 0;
     left: 0;
     right: 0;
+<<<<<<< HEAD
     background-color: #333; /* Dark, professional color */
     color: #fff;
     z-index: 1000;
     padding: 0.8rem 0; /* Adjusted padding */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+=======
+    background-color: rgba(135, 206, 250, 0.9); /* Light blue background with transparency */
+    color: #fff;
+    z-index: 1000;
+    padding: 1rem 0; /* Padding for navbar */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Shadow for depth */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
+/* Padding to body to prevent overlap with the navbar */
+body {
+    padding-top: 70px; /* Adjust based on navbar height */
+}
+
+/* Navigation Styles */
 nav ul {
     list-style: none;
     display: flex;
@@ -39,6 +54,7 @@ nav ul {
 }
 
 nav ul li {
+<<<<<<< HEAD
     margin: 0 15px; /* Moderate spacing for links */
 }
 
@@ -70,6 +86,49 @@ header h1 {
 header p {
     font-size: 1.2rem; /* Subtitle size */
     color: #ccc; /* Light gray for contrast */
+=======
+    margin: 0 20px; /* Increased margin for better spacing */
+}
+
+nav a {
+    color: #fff; /* White link color */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: bold; /* Make links bold */
+    padding: 10px 15px; /* Add padding for larger clickable area */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+}
+
+nav a:hover {
+    background-color: rgba(255, 165, 0, 0.8); /* Orange background on hover */
+}
+
+/* Style for the active link */
+nav a.active {
+    background-color: #ffa500; /* Active link background */
+}
+
+/* Accessibility focus state */
+nav a:focus {
+    outline: 2px solid #ffa500; /* Outline for focused links */
+}
+
+/* Layout Styles */
+header {
+    padding: 120px 0 60px; /* Space for the header */
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8));
+    color: white;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem; /* Larger header font size */
+    margin-bottom: 10px; /* Space below heading */
+}
+
+header p {
+    font-size: 1.3rem; /* Subtitle font size */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Main Content Styles */
@@ -78,7 +137,11 @@ main {
 }
 
 section {
+<<<<<<< HEAD
     margin: 40px 0; /* Separate sections */
+=======
+    margin: 50px 0; /* Increased margin for separation */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Container Styles */
@@ -86,28 +149,48 @@ section {
     max-width: 1000px;
     margin: 0 auto;
     padding: 1.5rem;
+<<<<<<< HEAD
     background: #fff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Very light shadow */
     border-radius: 8px;
+=======
+    background: #fff; /* White background for content */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    border-radius: 10px; /* Rounded corners */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Project and Timeline Styles */
 .project,
 .timeline li {
     margin: 1rem 0;
+<<<<<<< HEAD
     padding: 1rem;
     border: 1px solid #e1e1e1; /* Subtle border */
     border-radius: 5px;
     background: #f9f9f9; /* Light background */
+=======
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #f9f9f9; /* Slightly off-white for projects */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Footer Styles */
 footer {
     text-align: center;
     padding: 20px 0;
+<<<<<<< HEAD
     background-color: #333;
     color: #fff;
     margin-top: 40px;
+=======
+    background-color: rgba(135, 206, 250, 0.9);
+    color: #fff;
+    margin-top: 20px; /* Space above footer */
+    border-radius: 10px; /* Rounded corners for footer */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Scroll to Top Button Styles */
@@ -115,6 +198,7 @@ footer {
     position: fixed;
     bottom: 20px;
     right: 20px;
+<<<<<<< HEAD
     background: #333;
     color: white;
     border: none;
@@ -127,10 +211,24 @@ footer {
 
 #scrollToTop:hover {
     background: #555; /* Lighter on hover */
+=======
+    background: #007bff; /* Blue background */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+#scrollToTop:hover {
+    background: #0056b3; /* Darker blue on hover */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Dark Mode Styles */
 body.dark-mode {
+<<<<<<< HEAD
     background-color: #121212;
     color: #ccc;
 }
@@ -141,11 +239,24 @@ body.dark-mode nav {
 
 body.dark-mode footer {
     background: #1e1e1e;
+=======
+    background-color: #222; /* Dark background for dark mode */
+    color: #ddd; /* Light text */
+}
+
+body.dark-mode nav {
+    background: #555; /* Dark navbar background */
+}
+
+body.dark-mode footer {
+    background: #555; /* Dark footer background */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
     nav ul {
+<<<<<<< HEAD
         flex-direction: column;
     }
 
@@ -159,5 +270,20 @@ body.dark-mode footer {
 
     .container {
         padding: 1rem;
+=======
+        flex-direction: column; /* Stack links vertically on smaller screens */
+    }
+
+    header h1 {
+        font-size: 2.5rem; /* Adjust header font size */
+    }
+
+    header p {
+        font-size: 1.1rem; /* Adjust subtitle font size */
+    }
+
+    .container {
+        padding: 1rem; /* Adjust container padding for smaller screens */
+>>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
     }
 }
