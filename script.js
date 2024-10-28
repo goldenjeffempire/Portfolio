@@ -1,26 +1,25 @@
-function toggleTheme() {
+// Function to toggle Dark Mode
+const themeToggler = document.getElementById('theme-toggler');
+
+const toggleTheme = () => {
     const body = document.body;
     const nav = document.querySelector('nav');
 
-    // Toggle between dark and light themes
-    const isLight = body.classList.contains('light');
-    body.classList.toggle('light', !isLight);
-    body.classList.toggle('dark', isLight);
-    nav.classList.toggle('light', !isLight);
-    nav.classList.toggle('dark', isLight);
+    // Toggle between light and dark themes
+    const isLight = body.classList.toggle('light');
+    body.classList.toggle('dark', !isLight);
+    nav.classList.toggle('light', isLight);
+    nav.classList.toggle('dark', !isLight);
 
     // Update button text based on the theme
-    const themeToggler = document.getElementById("theme-toggler");
     themeToggler.textContent = isLight ? "Switch to Dark Mode" : "Switch to Light Mode";
 
     // Save the user's preference in local storage
-    localStorage.setItem("theme", isLight ? "dark" : "light");
-}
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+};
 
+// Check for saved user preference and set initial theme
 document.addEventListener("DOMContentLoaded", () => {
-    const themeToggler = document.getElementById("theme-toggler");
-
-    // Check for saved user preference and set initial theme
     const savedTheme = localStorage.getItem("theme") || "light"; // Default to light theme
     document.body.classList.add(savedTheme);
     document.querySelector('nav').classList.add(savedTheme);
@@ -116,4 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize Functions
     fadeInEffect(); // Call fadeInEffect first
+
+    // Scroll to Top Button Functionality
+    const scrollToTopButton = document.getElementById('scrollToTop');
+
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollToTopButton.style.display = "block";
+        } else {
+            scrollToTopButton.style.display = "none";
+        }
+    };
+
+    scrollToTopButton.addEventListener('click', () => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    });
 });
