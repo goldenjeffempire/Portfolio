@@ -14,28 +14,28 @@ html {
 body, html {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    padding: 10px;
     color: #333;
-    background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg');
+    background: linear-gradient(to bottom right, rgba(74, 144, 226, 0.8), rgba(80, 227, 194, 0.8)), url('your-image-url.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
-/* Ensure the navbar is fixed at the top */
+/* Navbar Styles */
 nav {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background-color: rgba(135, 206, 250, 0.85); /* Light blue background with transparency */
-    color: white;
+    background-color: rgba(135, 206, 250, 0.9); /* Light blue background with transparency */
+    color: #fff;
     z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
-    padding: 10px 0; /* Padding for navbar */
+    padding: 1rem 0; /* Padding for navbar */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Deeper shadow for better depth */
+    transition: background-color 0.3s; /* Smooth background transition */
 }
 
-/* Optional: add padding to body to prevent overlap with the navbar */
+/* Padding to body to prevent overlap with the navbar */
 body {
-    padding-top: 60px; /* Adjust based on navbar height */
+    padding-top: 70px; /* Adjust based on navbar height */
 }
 
 /* Navigation Styles */
@@ -43,28 +43,31 @@ nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    align-items: center; /* Center items vertically */
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px; /* Increased margin for better spacing */
 }
 
 nav a {
-    color: inherit; /* Make link colors inherit from nav color */
+    color: #fff; /* White link color */
     text-decoration: none; /* Remove underline from links */
     font-weight: bold; /* Make links bold */
-    padding: 10px; /* Adjust padding for clickable area */
-    transition: color 0.3s, border-bottom 0.3s; /* Smooth transition for hover effects */
+    padding: 10px 15px; /* Add padding for a larger clickable area */
+    border-radius: 5px; /* Rounded corners for buttons */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
 }
 
 nav a:hover {
-    color: #ffa500; /* Hover color */
-    text-decoration: underline; /* Underline on hover for links */
+    background-color: rgba(255, 165, 0, 0.8); /* Orange background on hover */
+    color: #fff; /* Keep text color white on hover */
 }
 
 /* Style for the active link */
 nav a.active {
-    border-bottom: 2px solid #ffa500; /* Active link style */
+    background-color: #ffa500; /* Active link background */
+    color: #fff; /* White text */
 }
 
 /* Accessibility focus state */
@@ -80,8 +83,7 @@ body.light {
 }
 
 nav.light {
-    background: rgba(135, 206, 250, 0.85); /* Light blue background for light theme */
-    color: #fff; /* White text */
+    background: rgba(135, 206, 250, 0.9); /* Light blue background for light theme */
 }
 
 body.dark {
@@ -90,42 +92,35 @@ body.dark {
 }
 
 nav.dark {
-    background: rgba(30, 30, 30, 0.85); /* Semi-transparent dark background for navbar */
-    color: #fff; /* White text */
-}
-
-nav ul li a.light {
-    color: #fff; /* White text color for links in light mode */
-}
-
-nav ul li a.dark {
-    color: #fff; /* White text color for links in dark mode */
+    background: rgba(30, 30, 30, 0.9); /* Semi-transparent dark background for navbar */
 }
 
 /* Layout Styles */
 header, footer, section, main {
-    padding: 20px;
-    max-width: 800px;
+    padding: 40px; /* Increased padding for better spacing */
+    max-width: 1200px;
     margin: auto;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95); /* Slightly more opaque white background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Deeper shadow for more depth */
 }
 
 /* Header Styles */
 header {
-    padding: 100px 0 50px;
-    background: linear-gradient(to right, rgba(0, 123, 255, 0.9), rgba(0, 86, 179, 0.9));
+    padding: 120px 0 60px; /* Adjusted for more breathing space */
+    background: linear-gradient(to right, rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8));
     color: white;
     text-align: center;
+    position: relative; /* For potential absolute positioning of elements */
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: 3rem; /* Larger header font size */
+    margin-bottom: 10px; /* Space below heading */
 }
 
 header p {
-    font-size: 1.2rem;
+    font-size: 1.3rem; /* Slightly larger subtitle font */
 }
 
 /* Main Content Styles */
@@ -135,7 +130,7 @@ main {
 
 /* Sections */
 section {
-    margin: 40px 0;
+    margin: 50px 0; /* Increased margin for separation */
 }
 
 /* Container */
@@ -146,6 +141,39 @@ section {
 }
 
 h2 {
-    font-size: 2rem;
-    margin-bottom: 20px; /* Ensure consistent spacing below headings */
+    font-size: 2.5rem; /* Increased heading size */
+    margin-bottom: 30px; /* More space below headings */
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: rgba(135, 206, 250, 0.9);
+    color: #fff;
+    margin-top: 20px; /* Space above footer */
+    border-radius: 10px; /* Rounded corners for footer */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column; /* Stack links vertically on smaller screens */
+    }
+
+    header h1 {
+        font-size: 2.5rem; /* Adjust header font size on smaller screens */
+    }
+
+    header p {
+        font-size: 1.1rem; /* Adjust subtitle font size */
+    }
+
+    h2 {
+        font-size: 2rem; /* Adjust h2 font size */
+    }
+
+    nav a {
+        padding: 8px 12px; /* Adjust padding for smaller screens */
+    }
 }
