@@ -29,6 +29,8 @@ A list of my technical skills.
 ## Contact
 You can reach me via the contact form on this site or through my social media links below.
 
+- The contact form is powered by [Formspree](https://formspree.io). To receive messages, replace the endpoint in the form with your Formspree endpoint.
+
 ## Social Media
 - [LinkedIn](https://linkedin.com/in/jeffery-emuodafevware)
 - [GitHub](https://github.com/goldenjeffempire)
