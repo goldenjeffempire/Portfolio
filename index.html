@@ -1,206 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Jeffery Onome EMuodafevware - Software Developer, showcasing projects, skills, and resume.">
     <meta name="keywords" content="Software Developer, Web Developer, Portfolio, Projects, Skills">
     <meta name="author" content="Jeffery Onome EMuodafevware">
-    <title>Jeffery Onome Emuodafevware - Portfolio</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.min.css">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicons@2.2.0/css/devicons.min.css">
-    <style>
-        /* Add smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-
-        nav {
-            background: #343a40;
-            color: #fff;
-            padding: 1rem;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-        }
-
-        nav ul li {
-            margin: 0 15px;
-        }
-
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        nav ul li a:hover {
-            background: #007bff;
-            color: #fff;
-            border-radius: 5px;
-        }
-
-        header {
-            text-align: center;
-            padding: 3rem 1rem;
-            background: #007bff;
-            color: #fff;
-            margin-bottom: 2rem;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        h2 {
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 1.5rem;
-            background: #fff;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .project,
-        .timeline li {
-            margin: 1rem 0;
-            padding: 1.5rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: #f9f9f9;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background: #343a40;
-            color: #fff;
-            margin-top: 2rem;
-        }
-
-        #scrollToTop {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-            display: none; /* Hidden by default */
-        }
-
-        #scrollToTop:hover {
-            background: #0056b3;
-        }
-
-        /* Dark Mode Styles */
-        body.dark-mode {
-            background-color: #222;
-            color: #ddd;
-        }
-
-        body.dark-mode nav {
-            background: #555;
-        }
-
-        body.dark-mode footer {
-            background: #555;
-        }
-
-        @media (max-width: 600px) {
-            nav ul {
-                flex-direction: column;
-            }
-        }
-    </style>
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 </head>
-
 <body>
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav id="navbar">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
             <li><a href="#resume">Resume</a></li>
             <li><a href="#contact">Contact</a></li>
-            <li><a href="#social-media">Social Media</a></li>
+            <li><a href="#contact">Social Media</a></li>
         </ul>
     </nav>
 
-    <header>
+    <!-- Header Section -->
+    <header id="home">
         <div class="container text-center">
-            <h1>Jeffery Onome Emuodafevware</h1>
-            <p>Software Developer | Python Django Specialist | Web Enthusiast</p>
-            <button id="theme-toggler" class="btn btn-light">Toggle Dark/Light Mode</button>
+            <h1>Hello, I'm Jeffery Onome Emuodafevware</h1>
+            <p>Aspiring Software Engineer | Python Django Specialist | Tech Enthusiast</p>
         </div>
     </header>
 
-    <main>
-        <section id="about">
-            <div class="container">
-                <h2>About Me</h2>
-                <p>Welcome to my portfolio! I am a passionate software developer with experience in creating web applications using modern technologies. I love solving problems and creating innovative solutions.</p>
-                <p>My interests include web development, artificial intelligence, and building innovative applications.</p>
-            </div>
-        </section>
+    <!-- About Me Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <img src="images/profile-photo.jpg" alt="Profile Picture">
+            <p>Welcome to my portfolio! I am a passionate software developer with experience in creating web applications using modern technologies. I love solving problems and creating innovative solutions.</p>
+            <p>My interests include web development, artificial intelligence, and building innovative applications.</p>
+       </div>
+    </section>
 
-        <section id="experience">
-            <div class="container">
-                <h2>Experience</h2>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <h3>Backend Software Engineer Intern</h3>
-                        <p>ALX Software Engineering Program (Remote)</p>
-                        <ul>
-                            <li>Developed robust backend services for diverse applications.</li>
-                            <li>Designed and implemented RESTful APIs to enhance functionality.</li>
-                            <li>Collaborated with frontend developers on integration projects.</li>
-                            <li>Managed PostgreSQL databases to ensure data integrity and reliability.</li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <h3>Lead Backend Developer</h3>
-                        <p>Capstone Project: GlobalXchange</p>
-                        <ul>
-                            <li>Led backend development for the trading app.</li>
-                            <li>Created and optimized RESTful APIs to improve performance.</li>
-                            <li>Achieved a 40% improvement in response time.</li>
-                            <li>Integrated advanced features, such as real-time notifications.</li>
-                        </ul>
-                    </li>
-                </ul>
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="project">
+                <h3>Echoverse Blog Platform</h3>
+                <p>A dynamic blog platform where users can create, edit, and manage blog posts while engaging with a community through real-time comments and likes.</p>
+                <a href="https://github.com/goldenjeffempire/echoverse-platform.git">View on GitHub</a>
             </div>
-        </section>
+            <div class="project">
+                <h3>GlobalXhange</h3>
+                <p>A trading app enabling users to buy and sell commodities and gift cards, facilitating transactions between users and shop owners.</p>
+                <a href="https://github.com/goldenjeffempire/globalxchange-platform.git">View on GitHub</a>
+            </div>
+       </div>
+    </section>
 
-        <section id="skills">
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+            <ul class="list-group">
+               <li class="list-group-item">
+                   <h3>Backend Software Engineer Intern</h3>
+                   <p>ALX Software Engineering Program (Remote)</p>
+                   <ul>
+                       <li>Developed robust backend services for diverse applications.</li>
+                       <li>Designed and implemented RESTful APIs to enhance functionality.</li>
+                       <li>Collaborated with frontend developers on integration projects.</li>
+                       <li>Managed PostgreSQL databases to ensure data integrity and reliability.</li>
+                   </ul>
+               </li>
+               <li class="list-group-item">
+                   <h3>Lead Backend Developer</h3>
+                   <p>Capstone Project: GlobalXchange</p>
+                   <ul>
+                       <li>Led backend development for the trading app.</li>
+                       <li>Created and optimized RESTful APIs to improve performance.</li>
+                       <li>Achieved a 40% improvement in response time.</li>
+                       <li>Integrated advanced features, such as real-time notifications.</li>
+                   </ul>
+               </li>
+            </ul>
+        </div>
+        
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
             <div class="container">
                 <h2>Skills</h2>
                 <ul class="list-unstyled">
@@ -242,94 +133,53 @@
                     </li>
                 </ul>
             </div>
-        </section>
+    </section>
 
-        <section id="projects">
-            <div class="container">
-                <h2>Projects</h2>
-                <div class="project">
-                    <h3>Echoverse Blog Platform</h3>
-                    <p>A dynamic blog platform where users can create, edit, and manage blog posts while engaging with a community through real-time comments and likes.</p>
-                    <a href="https://github.com/goldenjeffempire/echoverse-platform.git">View on GitHub</a>
-                </div>
-                <div class="project">
-                    <h3>GlobalXhange</h3>
-                    <p>A trading app enabling users to buy and sell commodities and gift cards, facilitating transactions between users and shop owners.</p>
-                    <a href="https://github.com/goldenjeffempire/globalxchange-platform.git">View on GitHub</a>
-                </div>
-            </div>
-        </section>
+    <!-- Resume Section -->
+    <section id="resume">
+           <div class="container">
+               <h2>Resume</h2>
+               <p>You can download my resume using the link below:</p>
+               <a href="resume/my_resume.pdf" download>Download Resume</a>
+           </div>
+    </section>
 
-        <section id="resume">
-            <div class="container">
-                <h2>Resume</h2>
-                <p>You can download my resume using the link below:</p>
-                <a class="btn btn-success" href="path/to/resume.pdf" download>D>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="container">
-                <h2>Contact Me</h2>
-                <form><form action="https://formspree.io/f/xjkvkpdn" method="POST">
+    <!-- Contact Section -->
+    <section id="contact">
+           <div class="container">
+               <h2>Contact</h2>
+               <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
                     <div class="form-group">
                         <label for="name">Name:</label>
-                        <input type="text" class="form-control" id="name" required>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" class="form-control" id="email" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Message:</label>
-                        <textarea class="form-control" id="message" rows="4" required></textarea>
+                        <textarea id="message" name="message" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Send</button>
-                </form>
-            </div>
-        </section>
+                    <button type="submit">Send</button>
+               </form>
+           </div> 
+    </section>
 
-        <section id="social-media">
-            <div class="container">
-                <h2>Social Media</h2>
-                <p>Connect with me on:</p>
-                <ul class="list-inline">
-                    <li class="list-inline-item"><a href="https://github.com/goldenjeffempire" target="_blank">GitHub</a></li>
-                    <li class="list-inline-item"><a href="https://linkedin.com/in/jeffery-emuodafevware" target="_blank">LinkedIn</a></li>
-                    <li class="list-inline-item"><a href="https://twitter.com/goldenjeffemp" target="_blank">Twitter</a></li>
-                </ul>
-            </div>
-        </section>
-    </main>
+    <!-- Social Media Links -->
+    <section id="social-media">
+        <div class="container">
+            <h2>Social Media</h2>
+            <p>Connect with me on:</p>
+            <ul class="list-inline">
+                <li><a href="https://linkedin.com/in/jeffery-emuodafevware">LinkedIn</a></li>
+                <li><a href="https://github.com/goldenjeffemp">GitHub</a></li>
+                <li><a href="https://twitter.com/goldenjeffemp">Twitter</a></li>
+            </ul>
+    
 
     <footer>
         <p>&copy; 2024 Jeffery Onome Emuodafevware. All Rights Reserved.</p>
     </footer>
-
-    <button id="scrollToTop">↑</button>
-
-    <script>
-        // Toggle Dark Mode
-        const themeToggler = document.getElementById('theme-toggler');
-        themeToggler.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
-
-        // Scroll to Top Button
-        const scrollToTopButton = document.getElementById('scrollToTop');
-        window.onscroll = function() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                scrollToTopButton.style.display = "block";
-            } else {
-                scrollToTopButton.style.display = "none";
-            }
-        };
-
-        scrollToTopButton.addEventListener('click', () => {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
-        });
-    </script>
 </body>
-
 </html>
