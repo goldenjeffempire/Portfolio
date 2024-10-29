@@ -12,7 +12,7 @@ Welcome to my personal portfolio website! This site showcases my projects, exper
 - [Social Media](#social-media)
 
 ## About Me
-I'm a recent graduate of the ALX Software Engineering program, passionate about software development and technology. This portfolio highlights my journey and projects.
+Welcome to my portfolio! I'm a recent graduate of the ALX Software Engineering program, passionate about software development and technology with experience in creating web applications using modern technologies. This portfolio highlights my journey and projects.
 
 ## Projects
 Here you will find some of the projects I have worked on.
@@ -38,3 +38,14 @@ You can reach me via the contact form on this site or through my social media li
 
 ## License
 This project is open-source and available under the [MIT License](LICENSE).
+
+
+
+
+
+
+## :pencil: **Author**
+### :man: Jeffery Emuuodafevware
+- [Github](https://github.com/goldenjeffempire)
+- [Linkedin](https://www.linkedin.com/in/jeffery-emuodafevware)
+- [Twitter](https://x.com/goldenjeffemp)
