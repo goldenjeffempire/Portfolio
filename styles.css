@@ -1,289 +1,192 @@
-/* Basic reset */
+/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Smooth scroll behavior */
-html {
-    scroll-behavior: smooth;
-}
-
-/* General Styles */
+/* Body Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     line-height: 1.6;
-<<<<<<< HEAD
-    background-color: #f7f7f7; /* Neutral background */
-    color: #333; /* Standard dark text for readability */
-    padding-top: 60px; /* Space for navbar */
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-/* Navbar Styles */
-nav {
-    position: fixed;
+/* Navigation Bar Styles */
+#navbar {
+    background: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
-<<<<<<< HEAD
-    background-color: #333; /* Dark, professional color */
-    color: #fff;
     z-index: 1000;
-    padding: 0.8rem 0; /* Adjusted padding */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-=======
-    background-color: rgba(135, 206, 250, 0.9); /* Light blue background with transparency */
-    color: #fff;
-    z-index: 1000;
-    padding: 1rem 0; /* Padding for navbar */
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); /* Shadow for depth */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
 }
 
-/* Padding to body to prevent overlap with the navbar */
-body {
-    padding-top: 70px; /* Adjust based on navbar height */
-}
-
-/* Navigation Styles */
-nav ul {
+#navbar ul {
     list-style: none;
     display: flex;
     justify-content: center;
 }
 
-nav ul li {
-<<<<<<< HEAD
-    margin: 0 15px; /* Moderate spacing for links */
+#navbar ul li {
+    margin: 0 15px;
 }
 
-nav a {
+#navbar ul li a {
     color: #fff;
     text-decoration: none;
-    font-weight: 500; /* Slightly bold */
-    padding: 8px 12px;
-    transition: color 0.3s; /* Smooth transition on hover */
+    font-weight: bold;
 }
 
-nav a:hover {
-    color: #ffa500; /* Subtle highlight on hover */
+#navbar ul li a:hover {
+    text-decoration: underline;
 }
 
 /* Header Styles */
 header {
-    padding: 100px 0 50px;
-    background-color: #222; /* Dark, minimalistic */
-    color: #fff;
-    text-align: center;
-}
-
-header h1 {
-    font-size: 2.5rem; /* Large heading */
-    margin-bottom: 10px;
-}
-
-header p {
-    font-size: 1.2rem; /* Subtitle size */
-    color: #ccc; /* Light gray for contrast */
-=======
-    margin: 0 20px; /* Increased margin for better spacing */
-}
-
-nav a {
-    color: #fff; /* White link color */
-    text-decoration: none; /* Remove underline from links */
-    font-weight: bold; /* Make links bold */
-    padding: 10px 15px; /* Add padding for larger clickable area */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-}
-
-nav a:hover {
-    background-color: rgba(255, 165, 0, 0.8); /* Orange background on hover */
-}
-
-/* Style for the active link */
-nav a.active {
-    background-color: #ffa500; /* Active link background */
-}
-
-/* Accessibility focus state */
-nav a:focus {
-    outline: 2px solid #ffa500; /* Outline for focused links */
-}
-
-/* Layout Styles */
-header {
-    padding: 120px 0 60px; /* Space for the header */
-    background: linear-gradient(to right, rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8));
+    background: #007bff;
     color: white;
+    padding: 50px 0;
     text-align: center;
 }
 
 header h1 {
-    font-size: 3rem; /* Larger header font size */
-    margin-bottom: 10px; /* Space below heading */
+    font-size: 2.5em;
 }
 
 header p {
-    font-size: 1.3rem; /* Subtitle font size */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
-}
-
-/* Main Content Styles */
-main {
-    padding: 30px 20px;
-}
-
-section {
-<<<<<<< HEAD
-    margin: 40px 0; /* Separate sections */
-=======
-    margin: 50px 0; /* Increased margin for separation */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
+    font-size: 1.2em;
 }
 
 /* Container Styles */
 .container {
+    width: 90%;
     max-width: 1000px;
-    margin: 0 auto;
-    padding: 1.5rem;
-<<<<<<< HEAD
-    background: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Very light shadow */
-    border-radius: 8px;
-=======
-    background: #fff; /* White background for content */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Shadow for depth */
-    border-radius: 10px; /* Rounded corners */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
+    margin: auto;
+    padding: 20px;
 }
 
-/* Project and Timeline Styles */
-.project,
-.timeline li {
-    margin: 1rem 0;
-<<<<<<< HEAD
-    padding: 1rem;
-    border: 1px solid #e1e1e1; /* Subtle border */
-    border-radius: 5px;
-    background: #f9f9f9; /* Light background */
-=======
-    padding: 1.5rem;
-    border: 1px solid #ddd;
+/* Section Styles */
+section {
+    padding: 40px 0;
+    margin: 20px 0;
+    background: white;
     border-radius: 8px;
-    background: #f9f9f9; /* Slightly off-white for projects */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* About Me Styles */
+#about img {
+    width: 150px;
+    border-radius: 50%;
+    display: block;
+    margin: 20px auto;
+}
+
+/* Projects Section */
+.project {
+    margin: 20px 0;
+}
+
+.project a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
+
+/* Experience Section */
+.list-group {
+    list-style-type: none;
+}
+
+.list-group-item {
+    margin: 10px 0;
+    padding: 15px;
+    background: #f8f9fa;
+    border-left: 5px solid #007bff;
+    border-radius: 5px;
+}
+
+/* Skills Section */
+.list-unstyled {
+    list-style: none;
+}
+
+.list-inline {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.list-inline li {
+    margin: 0 10px;
+}
+
+/* Resume Section */
+#resume a {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#resume a:hover {
+    background: #0056b3;
+}
+
+/* Contact Form Styles */
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
 }
 
 /* Footer Styles */
 footer {
     text-align: center;
-    padding: 20px 0;
-<<<<<<< HEAD
-    background-color: #333;
-    color: #fff;
-    margin-top: 40px;
-=======
-    background-color: rgba(135, 206, 250, 0.9);
-    color: #fff;
-    margin-top: 20px; /* Space above footer */
-    border-radius: 10px; /* Rounded corners for footer */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
-}
-
-/* Scroll to Top Button Styles */
-#scrollToTop {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-<<<<<<< HEAD
+    padding: 10px 0;
     background: #333;
     color: white;
-    border: none;
-    border-radius: 4px;
-    padding: 10px;
-    cursor: pointer;
-    display: none; /* Hidden by default */
-    transition: background 0.3s;
-}
-
-#scrollToTop:hover {
-    background: #555; /* Lighter on hover */
-=======
-    background: #007bff; /* Blue background */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    display: none; /* Hidden by default */
-}
-
-#scrollToTop:hover {
-    background: #0056b3; /* Darker blue on hover */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-<<<<<<< HEAD
-    background-color: #121212;
-    color: #ccc;
-}
-
-body.dark-mode nav {
-    background: #1e1e1e;
-}
-
-body.dark-mode footer {
-    background: #1e1e1e;
-=======
-    background-color: #222; /* Dark background for dark mode */
-    color: #ddd; /* Light text */
-}
-
-body.dark-mode nav {
-    background: #555; /* Dark navbar background */
-}
-
-body.dark-mode footer {
-    background: #555; /* Dark footer background */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
+    position: relative;
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    nav ul {
-<<<<<<< HEAD
+    #navbar ul {
         flex-direction: column;
     }
 
     header h1 {
-        font-size: 2rem;
+        font-size: 2em;
     }
 
     header p {
-        font-size: 1rem;
-    }
-
-    .container {
-        padding: 1rem;
-=======
-        flex-direction: column; /* Stack links vertically on smaller screens */
-    }
-
-    header h1 {
-        font-size: 2.5rem; /* Adjust header font size */
-    }
-
-    header p {
-        font-size: 1.1rem; /* Adjust subtitle font size */
-    }
-
-    .container {
-        padding: 1rem; /* Adjust container padding for smaller screens */
->>>>>>> 443de3c7a83531835a2ffec7bc9df5128f67a10f
+        font-size: 1em;
     }
 }
