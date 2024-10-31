@@ -42,18 +42,35 @@ nav ul li a {
 header {
     text-align: center;
     padding: 4rem 2rem;
-    background-color: #f4f4f4;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('header-background.jpg') center/cover no-repeat;
+    color: #ffffff;
     width: 100%;
 }
 
 header h1 {
     font-size: 2.5rem;
-    color: #333;
+    color: #ffffff;
 }
 
 header p {
     font-size: 1.2rem;
-    color: #777;
+    color: #dddddd;
+}
+
+/* Button Styles */
+.btn-outline-light {
+    border-color: #ffffff;
+    color: #ffffff;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-light:hover {
+    background-color: #ffffff;
+    color: #333333;
 }
 
 /* About Me Section */
