@@ -41,7 +41,7 @@
     </nav>
 
     <!-- Header Section -->
-    <header class="bg-primary text-white text-center py-5">
+    <header class="bg-primary text-white text-center py-5" style="background-image: url('header-bg.jpg'); background-size: cover; background-position: center;">
         <div class="container">
             <h1>Hello, I'm Jeffery Onome Emuodafevware</h1>
             <p class="lead">Aspiring Software Engineer | Web Developer | Tech Enthusiast</p>
@@ -81,86 +81,144 @@
     <!-- Experience Section -->
     <section id="experience" class="container my-5">
         <h2 class="text-center">Experience</h2>
-           <div class="card-body">
-               <li class="list-group-item">      
-                   <h3 class="card-title">Backend Software Engineer Intern</h3>
-                   <p class="card-sub-title">ALX Software Engineering Program (Remote)</p>
-                   <ul>
-                       <li class="card-text">Developed robust backend services for diverse applications.</li>
-                       <li class="card-text">Designed and implemented RESTful APIs to enhance functionality.</li>
-                       <li class="card-text">Collaborated with frontend developers on integration projects.</li>
-                       <li class="card-text">Managed PostgreSQL databases to ensure data integrity and reliability.</li>
-                   </ul>
-               </li>
-               <li class="list-group-item">
-                   <h3 class="card-title">Lead Backend Developer</h3>
-                   <p class="card-sub-title">Capstone Project: GlobalXchange</p>
-                   <ul>
-                       <li class="card-text">Led backend development for the trading app.</li>
-                       <li class="card-text">Created and optimized RESTful APIs to improve performance.</li>
-                       <li class="card-text">Achieved a 40% improvement in response time.</li>
-                       <li class="card-text">Integrated advanced features, such as real-time notifications.</li>
-                   </ul>
-               </li>
-            </ul>
-        </div>
-        
+        <ul class="timeline">
+            <li class="list-group-itme">
+                <h3 class="card-title">Backend Software Engineer Intern</h3>
+                <p class="card-sub-title">ALX Software Engineering Program (Remote)</p>
+                <ul>
+                    <li class="card-text">Developed robust backend services for diverse applications.</li>
+                    <li class="card-text">Designed and implemented RESTful APIs to enhance functionality.</li>
+                    <li class="card-text">Collaborated with frontend developers on integration projects.</li>
+                    <li class="card-text">Managed PostgreSQL databases to ensure data integrity and reliability.</li>
+                    </ul>
+            </li>
+            <li class="list-group-item">
+                <h3 class="card-title">Lead Backend Developer</h3>
+                <p class="card-sub-title">Capstone Project: GlobalXchange</p>
+                <ul>
+                    <li class="card-text">Led backend development for the trading app.</li>
+                    <li class="card-text">Created and optimized RESTful APIs to improve performance.</li>
+                    <li class="card-text">Achieved a 40% improvement in response time.</li>
+                    <li class="card-text">Integrated advanced features, such as real-time notifications.</li>
+                </ul>
+            </li>
+        </ul>
     </section>
 
     <!-- Skills Section -->
-    <section id="experience" class="container my-5">
-        <h2 class="text-center">Skills</h2>
-            <div class="card-body">
-                <ul class="list-unstyled">
-                    <li>
-                        <strong>Programming Languages:</strong>
-                        <i class="card-text" title="Python"></i> Python,
-                        <i class="card-text" title="JavaScript"></i> JavaScript,
-                        <i class="card-text" title="C++"></i> C++,
-                        <i class="card-text" title="Java"></i> Java
-                    </li>
-                    <li>
-                        <strong>Web Development:</strong>
-                        <i class="card-text" title="Django"></i> Django,
-                        <i class="card-text" title="React"></i> React,
-                        <i class="card-text" title="HTML5"></i> HTML,
-                        <i class="card-text" title="API"></i> API,
-                        <i class="card-text" title="CSS3"></i> CSS,
-                        <i class="card-text" title="Flask"></i> Flask
-                    </li>
-                    <li>
-                        <strong>Databases:</strong>
-                        <i class="card-text" title="SQLite"></i> SQLite,
-                        <i class="card-text" title="PostgreSQL"></i> PostgreSQL,
-                        <i class="card-text" title="MySQL"></i> MySQL
-                    </li>
-                    <li>
-                        <strong>Operating Systems:</strong>
-                        <i class="card-text" title="Linux"></i> Linux,
-                        <i class="card-text" title="Windows"></i> Windows,
-                        <i class="card-text" title="Visual Studio Code"></i> VS Code
-                    </li>
-                    <li>
-                        <strong>Testing and Debugging:</strong>
-                        <i class="card-text" title="Unit Testing"></i> Unit Testing,
-                        <i class="card-text" title="Integration Testing"></i> Integration Testing,
-                        <i class="card-text" title="Bug Tracking"></i> Bug Tracking
-                    </li>
-                    <li>
-                        <strong>Version Control:</strong>
-                        <i class="card-text" title="Git"></i> Git,
-                        <i class="card-text" title="GitHub"></i> GitHub
-                    </li>
-                </ul>
+    <section id="skills" class="container my-5">
+        <h2 class="text-center mb-4">Skills</h2>
+        <div class="row">
+
+            <!-- Programming Languages -->
+            <div class="col-md-6 mb-3">
+                <p><strong>Python</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                </div>
+                <p><strong>JavaScript</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                </div>
+                <p><strong>C++</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                </div>
+                <p><strong>Java</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+                </div>
             </div>
+
+            <!-- Web Development -->
+            <div class="col-md-6 mb-3">
+                <p><strong>Django</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                </div>
+                <p><strong>React</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                </div>
+                <p><strong>HTML</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 95%;" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
+                </div>
+                <p><strong>CSS</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                </div>
+            </div>
+
+            <!-- Databases -->
+            <div class="col-md-6 mb-3">
+                <p><strong>SQLite</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+                </div>
+                <p><strong>PostgreSQL</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                </div>
+                <p><strong>MySQL</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+                </div>
+            </div>
+
+            <!-- Operating Systems -->
+            <div class="col-md-6 mb-3">
+                <p><strong>Linux</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                </div>
+                <p><strong>Windows</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                </div>
+                <p><strong>VS Code</strong></p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                </div>
+            </div>
+
+        <!-- Testing and Debugging -->
+        <div class="col-md-6 mb-3">
+            <p><strong>Unit Testing</strong></p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
+            </div>
+            <p><strong>Integration Testing</strong></p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+            </div>
+            <p><strong>Bug Tracking</strong></p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
+            </div>
+        </div>
+
+        <!-- Version Control -->
+        <div class="col-md-6 mb-3">
+            <p><strong>Git</strong></p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+            </div>
+            <p><strong>GitHub</strong></p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+            </div>
+        </div>
+        
+        </div>
     </section>
 
+
     <!-- Resume Section -->
-    <section id="experience" class="container my-5">
-        <h2 class="text-center">Resume</h2>
-        <div class="card-body">
-            <h3 class="card-title">Resume</h3>
-            <p class="card-text">You can download my resume</p>
+    <section id="resume" class="container my-5">
+        <h2 class="text-center mb-4">Resume</h2>
+        <div class="text-center">
+            <p class="card-text">You can download my resume:</p>
             <a href="resume/my_resume.pdf" class="btn btn-primary">Download Resume</a>
         </div>
     </section>
@@ -168,7 +226,7 @@
 
     <!-- Contact Section -->
     <section id="contact" class="container my-5">
-        <h2 class="text-center">Contact</h2>
+        <h2 class="text-center mb-4">Contact</h2>
             <form action="https://formspree.io/f/xjkvkpdn" method="POST" class="mx-auto" style="max-width: 600px;">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name:</label>
@@ -186,19 +244,22 @@
             </form>
     </section>
 
-    <!-- Social Media Links -->
+    <!-- Social Media Links Section -->
     <section id="social-media" class="container my-5">
-        <h2 class="text-center">Social Media</h2>
-        <div class="card-body">
-            <h3 class="text-title">Social Media</h3>
-            <p class="text-text">Connect with me on:</p>
-            <ul class="list-inline">
-                <li><a href="https://linkedin.com/in/jeffery-emuodafevware">LinkedIn</a></li>
-                <li><a href="https://github.com/goldenjeffempire">GitHub</a></li>
-                <li><a href="https://twitter.com/goldenjeffemp">Twitter</a></li>
-            </ul>
+        <h2 class="text-center">Connect with Me</h2>
+        <div class="text-center">
+            <a href="https://linkedin.com/in/jeffery-emuodafevware" class="text-dark me-3" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://github.com/yourprofile" class="text-dark" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://twitter.com/yourprofile" class="text-dark ms-3" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
         </div>
     </section>
+
 
 
     <footer class="bg-dark text-white text-center py-4">
