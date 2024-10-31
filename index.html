@@ -19,7 +19,6 @@
 </head>
 
 <body>
-<body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Jeffery's Portfolio</a>
@@ -130,76 +129,79 @@
                     </li>
                     <li>
                         <strong>Databases:</strong>
-                        <i class="devicon-sqlite-plain colored" title="SQLite"></i> SQLite,
-                        <i class="devicon-postgresql-plain colored" title="PostgreSQL"></i> PostgreSQL,
-                        <i class="devicon-mysql-plain colored" title="MySQL"></i> MySQL
+                        <i class="card-text" title="SQLite"></i> SQLite,
+                        <i class="card-text" title="PostgreSQL"></i> PostgreSQL,
+                        <i class="card-text" title="MySQL"></i> MySQL
                     </li>
                     <li>
                         <strong>Operating Systems:</strong>
-                        <i class="devicon-linux-plain colored" title="Linux"></i> Linux,
-                        <i class="devicon-windows-plain colored" title="Windows"></i> Windows,
-                        <i class="devicon-vscode-plain colored" title="Visual Studio Code"></i> VS Code
+                        <i class="card-text" title="Linux"></i> Linux,
+                        <i class="card-text" title="Windows"></i> Windows,
+                        <i class="card-text" title="Visual Studio Code"></i> VS Code
                     </li>
                     <li>
                         <strong>Testing and Debugging:</strong>
-                        <i class="devicon-jest-plain colored" title="Unit Testing"></i> Unit Testing,
-                        <i class="devicon-postman-plain colored" title="Integration Testing"></i> Integration Testing,
-                        <i class="devicon-bug-tracking-plain colored" title="Bug Tracking"></i> Bug Tracking
+                        <i class="card-text" title="Unit Testing"></i> Unit Testing,
+                        <i class="card-text" title="Integration Testing"></i> Integration Testing,
+                        <i class="card-text" title="Bug Tracking"></i> Bug Tracking
                     </li>
                     <li>
                         <strong>Version Control:</strong>
-                        <i class="devicon-git-plain colored" title="Git"></i> Git,
-                        <i class="devicon-github-plain colored" title="GitHub"></i> GitHub
+                        <i class="card-text" title="Git"></i> Git,
+                        <i class="card-text" title="GitHub"></i> GitHub
                     </li>
                 </ul>
             </div>
     </section>
 
     <!-- Resume Section -->
-    <section id="resume">
-           <div class="container">
-               <h2>Resume</h2>
-               <p>You can download my resume using the link below:</p>
-               <a href="resume/my_resume.pdf" download>Download Resume</a>
+    <section id="experience" class="container my-5">
+        <h2 class="text-center">Skills</h2>
+            <div class="card-body">
+               <h2 class="card-title">Resume</h2>
+               <p class="card-text">You can download my resume using the link below:</p>
+               <a href="resume/my_resume.pdf" class="btn btn-primary" download>Download Resume</a>
            </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact">
-           <div class="container">
-               <h2>Contact</h2>
-               <form action="https://formspree.io/f/xjkvkpdn" method="POST">
-                    <div class="form-group">
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message:</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit">Send</button>
-               </form>
-           </div> 
+    <section id="contact" class="container my-5">
+        <h2 class="text-center">Contact</h2>
+            <form action="https://formspree.io/f/xjkvkpdn" method="POST" class="mx-auto" style="max-width: 600px;">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label"">Email:</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
     </section>
 
     <!-- Social Media Links -->
-    <section id="social-media">
-        <div class="container">
-            <h2>Social Media</h2>
-            <p>Connect with me on:</p>
+    <section id="social-media" class="container my-5">
+        <h2 class="text-center">Contact</h2>
+            <div class="card-body">
+                <h2 class="text-center">Social Media</h2>
+                <p class="text-text">Connect with me on:</p>
             <ul class="list-inline">
-                <li><a href="https://linkedin.com/in/jeffery-emuodafevware">LinkedIn</a></li>
-                <li><a href="https://github.com/goldenjeffempire">GitHub</a></li>
-                <li><a href="https://twitter.com/goldenjeffemp">Twitter</a></li>
+                <li><a href="https://linkedin.com/in/jeffery-emuodafevware" class="text-white me-3"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                <li><a href="https://github.com/goldenjeffempire" class="text-white"><i class="fab fa-github"></i> GitHub</a>
+                <li><a href="https://twitter.com/goldenjeffemp" class="text-white"><i class="fab fa-github"></i> GitHub</a>
             </ul>
-    
+    </section>
 
-    <footer>
+    <footer class="bg-dark text-white text-center py-4">
         <p>&copy; 2024 Jeffery Onome Emuodafevware. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
