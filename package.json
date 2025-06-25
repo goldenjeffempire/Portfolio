@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack portfolio website with Django and React",
+  "scripts": {
+    "start": "./start.sh",
+    "start:backend": "./start_backend.sh",
+    "start:frontend": "./start_frontend.sh",
+    "build": "cd portfolio_frontend && npm run build",
+    "install:all": "cd portfolio_backend && pip install -r requirements.txt && cd ../portfolio_frontend && npm install"
+  },
+  "keywords": ["portfolio", "django", "react", "full-stack"],
+  "author": "Jeffery Onome Emuodafevwa",
+  "license": "MIT"
+}
