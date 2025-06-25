@@ -37,7 +37,7 @@ class Skill(models.Model):
         ('frameworks', 'Frameworks'),
         ('methodologies', 'Methodologies'),
     ]
-    
+
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=SKILL_CATEGORIES)
     proficiency_level = models.IntegerField(default=1, help_text="1-5 scale")
@@ -96,7 +96,7 @@ class Education(models.Model):
         ('course', 'Course'),
         ('bootcamp', 'Bootcamp'),
     ]
-    
+
     institution = models.CharField(max_length=200)
     degree_title = models.CharField(max_length=200)
     education_type = models.CharField(max_length=20, choices=EDUCATION_TYPES)
@@ -110,6 +110,10 @@ class Education(models.Model):
 
     def __str__(self):
         return f"{self.degree_title} - {self.institution}"
+
+    @property
+    def graduation_year(self):
+        return self.end_date.year if self.end_date else None
 
     class Meta:
         ordering = ['-end_date', 'order']
