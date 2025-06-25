@@ -2,4 +2,5 @@
 portfolio_backend/.venv/
 portfolio-venv/
 .python-version
-.env*
+portfolio_backend/.env*
+portfolio_frontend/.env*
