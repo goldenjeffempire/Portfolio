@@ -1,0 +1,4 @@
+# Python virtualenv
+portfolio_backend/.venv/
+portfolio-venv/
+.python-version
