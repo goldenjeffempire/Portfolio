@@ -1,1 +1,30 @@
 INFO 2025-06-25 18:31:12,164 autoreload 13537 132738390032512 Watching for file changes with StatReloader
+INFO 2025-06-26 00:28:47,158 autoreload 41124 130947000066176 Watching for file changes with StatReloader
+INFO 2025-06-26 00:42:30,897 autoreload 43768 131114303307904 Watching for file changes with StatReloader
+INFO 2025-06-26 00:46:22,850 autoreload 44185 125854881480832 Watching for file changes with StatReloader
+INFO 2025-06-26 00:46:59,023 basehttp 44185 125854784943808 "GET / HTTP/1.1" 302 0
+INFO 2025-06-26 00:46:59,078 basehttp 44185 125854784943808 "GET /api/ HTTP/1.1" 200 250
+WARNING 2025-06-26 00:47:01,337 log 44185 125854784943808 Not Found: /favicon.ico
+WARNING 2025-06-26 00:47:01,339 basehttp 44185 125854784943808 "GET /favicon.ico HTTP/1.1" 404 42
+INFO 2025-06-26 00:47:16,510 basehttp 44185 125854784943808 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-06-26 00:47:16,961 basehttp 44185 125854784943808 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4173
+WARNING 2025-06-26 00:47:17,517 log 44185 125854784943808 Not Found: /static/admin/css/dark_mode.css
+WARNING 2025-06-26 00:47:17,520 log 44185 125854768158400 Not Found: /static/admin/css/base.css
+WARNING 2025-06-26 00:47:17,523 log 44185 125854776551104 Not Found: /static/admin/css/login.css
+WARNING 2025-06-26 00:47:17,524 basehttp 44185 125854784943808 "GET /static/admin/css/dark_mode.css HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,524 basehttp 44185 125854768158400 "GET /static/admin/css/base.css HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,525 basehttp 44185 125854776551104 "GET /static/admin/css/login.css HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,618 log 44185 125854768158400 Not Found: /static/admin/js/theme.js
+WARNING 2025-06-26 00:47:17,619 basehttp 44185 125854768158400 "GET /static/admin/js/theme.js HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,630 log 44185 125854768158400 Not Found: /static/admin/css/login.css
+WARNING 2025-06-26 00:47:17,632 basehttp 44185 125854768158400 "GET /static/admin/css/login.css HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,638 log 44185 125854776551104 Not Found: /static/admin/css/nav_sidebar.css
+WARNING 2025-06-26 00:47:17,639 basehttp 44185 125854776551104 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,676 log 44185 125854776551104 Not Found: /static/admin/css/responsive.css
+WARNING 2025-06-26 00:47:17,678 basehttp 44185 125854776551104 "GET /static/admin/css/responsive.css HTTP/1.1" 404 42
+WARNING 2025-06-26 00:47:17,680 log 44185 125854768158400 Not Found: /static/admin/js/nav_sidebar.js
+WARNING 2025-06-26 00:47:17,681 basehttp 44185 125854768158400 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 404 42
+INFO 2025-06-26 00:57:06,019 basehttp 44185 125854776551104 "GET / HTTP/1.1" 302 0
+INFO 2025-06-26 00:57:06,192 basehttp 44185 125854776551104 "GET /api/ HTTP/1.1" 200 250
+INFO 2025-06-26 01:57:24,571 autoreload 7 138037545892736 Watching for file changes with StatReloader
+INFO 2025-06-26 02:13:49,405 autoreload 7 136352914652032 Watching for file changes with StatReloader

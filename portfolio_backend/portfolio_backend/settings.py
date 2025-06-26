@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'portfolio.middleware.SecurityHeadersMiddleware',
+#    'portfolio.middleware.SecurityHeadersMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio_backend.urls'
@@ -67,18 +67,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio_backend.wsgi.application'
 
-# Database - Production ready with fallback
-if os.getenv('DATABASE_URL'):
+# Database configuration
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL:
     DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
 else:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DB_NAME', 'portfolio_db'),
+            'USER': os.getenv('DB_USER', 'portfolio_user'),
+            'PASSWORD': os.getenv('DB_PASSWORD', 'yourpassword'),
+            'HOST': os.getenv('DB_HOST', 'localhost'),
+            'PORT': os.getenv('DB_PORT', '5432'),
         }
     }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
