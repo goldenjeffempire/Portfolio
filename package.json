@@ -9,7 +9,16 @@
     "build": "cd portfolio_frontend && npm run build",
     "install:all": "cd portfolio_backend && pip install -r requirements.txt && cd ../portfolio_frontend && npm install"
   },
-  "keywords": ["portfolio", "django", "react", "full-stack"],
+  "keywords": [
+    "portfolio",
+    "django",
+    "react",
+    "full-stack"
+  ],
   "author": "Jeffery Onome Emuodafevwa",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "lucide-react": "^0.525.0",
+    "react-helmet-async": "^2.0.5"
+  }
 }

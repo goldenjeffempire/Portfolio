@@ -464,3 +464,176 @@ const ProjectCard = ({ project, viewMode, variants }) => {
 }
 
 export default ProjectsPage
+import React, { useState, useEffect } from 'react';
+import { ExternalLink, Github, Filter } from 'lucide-react';
+import { portfolioAPI } from '../services/api';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+
+const ProjectsPage = () => {
+  const [projects, setProjects] = useState([]);
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('all');
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const data = await portfolioAPI.getProjects();
+        setProjects(data);
+        setFilteredProjects(data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
+    if (filter === 'all') {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(
+        projects.filter(project =>
+          project.technologies?.toLowerCase().includes(filter.toLowerCase())
+        )
+      );
+    }
+  }, [filter, projects]);
+
+  const technologies = [...new Set(
+    projects.flatMap(project =>
+      project.technologies?.split(',').map(tech => tech.trim()) || []
+    )
+  )].slice(0, 8);
+
+  if (loading) return <LoadingSpinner />;
+
+  return (
+    <div className="pt-20 min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            My Projects
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            A collection of projects that showcase my skills and passion for development
+          </p>
+        </div>
+
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
+          <button
+            onClick={() => setFilter('all')}
+            className={`px-4 py-2 rounded-full font-medium transition-colors ${
+              filter === 'all'
+                ? 'bg-blue-600 text-white'
+                : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+            }`}
+          >
+            All Projects
+          </button>
+          {technologies.map((tech, index) => (
+            <button
+              key={index}
+              onClick={() => setFilter(tech)}
+              className={`px-4 py-2 rounded-full font-medium transition-colors ${
+                filter === tech
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+              }`}
+            >
+              {tech}
+            </button>
+          ))}
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProjects.map((project, index) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+            >
+              {project.image && (
+                <div className="relative">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black bg-opacity-0 hover:bg-opacity-20 transition-all duration-300" />
+                </div>
+              )}
+              
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  {project.title}
+                </h3>
+                
+                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.technologies?.split(',').slice(0, 3).map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm rounded-full"
+                    >
+                      {tech.trim()}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Links */}
+                <div className="flex space-x-4">
+                  {project.live_url && (
+                    <a
+                      href={project.live_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 font-medium"
+                    >
+                      <ExternalLink size={16} />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
+                  {project.github_url && (
+                    <a
+                      href={project.github_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 text-gray-600 hover:text-gray-700 dark:text-gray-400 font-medium"
+                    >
+                      <Github size={16} />
+                      <span>Code</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {filteredProjects.length === 0 && (
+          <div className="text-center py-12">
+            <Filter size={48} className="mx-auto text-gray-400 mb-4" />
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+              No projects found
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400">
+              Try adjusting your filter or check back later for new projects.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ProjectsPage;

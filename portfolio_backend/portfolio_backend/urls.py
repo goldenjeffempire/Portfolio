@@ -6,6 +6,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+
+# Custom error handlers
+handler404 = 'portfolio.views.custom_404'
+handler500 = 'portfolio.views.custom_500'
 from django.views.generic import RedirectView
 
 urlpatterns = [

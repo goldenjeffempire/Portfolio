@@ -94,7 +94,7 @@ else:
                 'HOST': os.getenv('DB_HOST', 'localhost'),
                 'PORT': os.getenv('DB_PORT', '5432'),
                 'OPTIONS': {
-                    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                    'connect_timeout': 20,
                 },
             }
         }

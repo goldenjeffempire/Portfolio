@@ -100,3 +100,29 @@ class SecurityHeadersMiddleware(MiddlewareMixin):
         response['X-Content-Type-Options'] = 'nosniff'
 
         return response
+from django.utils.deprecation import MiddlewareMixin
+
+class SecurityHeadersMiddleware(MiddlewareMixin):
+    """Add security headers to all responses"""
+    
+    def process_response(self, request, response):
+        # Security headers for production
+        response['X-Content-Type-Options'] = 'nosniff'
+        response['X-Frame-Options'] = 'DENY'
+        response['X-XSS-Protection'] = '1; mode=block'
+        response['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+        response['Permissions-Policy'] = 'geolocation=(), microphone=(), camera=()'
+        
+        # Content Security Policy
+        if not request.path.startswith('/admin/'):
+            response['Content-Security-Policy'] = (
+                "default-src 'self'; "
+                "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; "
+                "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+                "font-src 'self' https://fonts.gstatic.com; "
+                "img-src 'self' data: https:; "
+                "connect-src 'self' https:; "
+                "frame-ancestors 'none';"
+            )
+        
+        return response

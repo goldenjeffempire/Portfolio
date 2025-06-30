@@ -637,3 +637,182 @@ const AboutPage = () => {
 }
 
 export default AboutPage
+import React, { useState, useEffect } from 'react';
+import { portfolioAPI } from '../services/api';
+import LoadingSpinner from '../components/ui/LoadingSpinner';
+
+const AboutPage = () => {
+  const [data, setData] = useState({
+    profile: null,
+    skills: [],
+    experience: []
+  });
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [portfolioData, skills, experience] = await Promise.all([
+          portfolioAPI.getPortfolioData(),
+          portfolioAPI.getSkills(),
+          portfolioAPI.getExperience()
+        ]);
+
+        setData({
+          profile: portfolioData.profile,
+          skills,
+          experience
+        });
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) return <LoadingSpinner />;
+
+  const { profile, skills, experience } = data;
+
+  return (
+    <div className="pt-20 min-h-screen bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            About Me
+          </h1>
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            Learn more about my journey, skills, and passion for technology
+          </p>
+        </div>
+
+        {/* Profile Section */}
+        {profile && (
+          <div className="mb-16">
+            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 md:p-12">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                  <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                    {profile.name}
+                  </h2>
+                  <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
+                    {profile.bio}
+                  </p>
+                  <div className="space-y-4">
+                    <div>
+                      <span className="font-semibold text-gray-900 dark:text-white">Location: </span>
+                      <span className="text-gray-600 dark:text-gray-400">{profile.location}</span>
+                    </div>
+                    <div>
+                      <span className="font-semibold text-gray-900 dark:text-white">Email: </span>
+                      <a
+                        href={`mailto:${profile.email}`}
+                        className="text-blue-600 hover:text-blue-700 dark:text-blue-400"
+                      >
+                        {profile.email}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                {profile.image && (
+                  <div className="flex justify-center lg:justify-end">
+                    <img
+                      src={profile.image}
+                      alt={profile.name}
+                      className="w-64 h-64 rounded-2xl object-cover shadow-lg"
+                    />
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Skills Section */}
+        {skills.length > 0 && (
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+              Skills & Technologies
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                >
+                  <div className="flex justify-between items-center mb-3">
+                    <h3 className="font-semibold text-gray-900 dark:text-white">
+                      {skill.name}
+                    </h3>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      {skill.proficiency}%
+                    </span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+                    <div
+                      className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-300"
+                      style={{ width: `${skill.proficiency}%` }}
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                    {skill.category}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Experience Section */}
+        {experience.length > 0 && (
+          <div>
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+              Work Experience
+            </h2>
+            <div className="space-y-8">
+              {experience.map((exp, index) => (
+                <div
+                  key={index}
+                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg"
+                >
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+                    <div>
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                        {exp.position}
+                      </h3>
+                      <p className="text-lg text-blue-600 dark:text-blue-400">
+                        {exp.company}
+                      </p>
+                    </div>
+                    <div className="text-gray-600 dark:text-gray-400 mt-2 md:mt-0">
+                      {exp.start_date} - {exp.end_date || 'Present'}
+                    </div>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    {exp.description}
+                  </p>
+                  {exp.achievements && (
+                    <div>
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                        Key Achievements:
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-300">
+                        {exp.achievements}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default AboutPage;
