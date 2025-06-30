@@ -1,21 +1,16 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+
+from django.urls import path
 from .views import (
-    ProfileViewSet, SkillViewSet, ExperienceViewSet,
-    ProjectViewSet, EducationViewSet, contact_view,
-    api_stats, health_check
+    portfolio_overview, projects_list, project_detail,
+    skills_list, experience_list, contact_form, health_check
 )
 
-router = DefaultRouter()
-router.register('profiles', ProfileViewSet)
-router.register('skills', SkillViewSet)
-router.register('experiences', ExperienceViewSet)
-router.register('projects', ProjectViewSet)
-router.register('education', EducationViewSet)
-
 urlpatterns = [
-    path('', include(router.urls)),
-    path('contact/', contact_view, name='contact'),
-    path('stats/', api_stats, name='api-stats'),
+    path('', portfolio_overview, name='portfolio-overview'),
+    path('projects/', projects_list, name='projects-list'),
+    path('projects/<int:pk>/', project_detail, name='project-detail'),
+    path('skills/', skills_list, name='skills-list'),
+    path('experience/', experience_list, name='experience-list'),
+    path('contact/', contact_form, name='contact-form'),
     path('health/', health_check, name='health-check'),
 ]
