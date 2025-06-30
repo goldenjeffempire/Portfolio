@@ -54,3 +54,11 @@ args = "cd portfolio_backend && python manage.py collectstatic --noinput"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd portfolio_backend && python manage.py migrate"
+
+[[ports]]
+localPort = 3000
+externalPort = 3000
+
+[[ports]]
+localPort = 3001
+externalPort = 80
