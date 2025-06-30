@@ -1,4 +1,5 @@
 
+
 """
 Django settings for portfolio_backend project - Production Ready.
 """
@@ -18,8 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-production-key-change-immediately')
 
 # Production security settings
-DEBUG = False
-ALLOWED_HOSTS = ['*']  # Configure with your domain in production
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -44,7 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-#    'portfolio.middleware.SecurityHeadersMiddleware',
+    'portfolio.middleware.SecurityHeadersMiddleware',
 ]
 
 ROOT_URLCONF = 'portfolio_backend.urls'
@@ -75,17 +76,28 @@ if DATABASE_URL:
         'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600)
     }
 else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'portfolio_db'),
-            'USER': os.getenv('DB_USER', 'portfolio_user'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'yourpassword'),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '5432'),
+    # Use SQLite for development, PostgreSQL for production
+    if DEBUG:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
         }
-    }
-
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': os.getenv('DB_NAME', 'portfolio_db'),
+                'USER': os.getenv('DB_USER', 'portfolio_user'),
+                'PASSWORD': os.getenv('DB_PASSWORD', 'yourpassword'),
+                'HOST': os.getenv('DB_HOST', 'localhost'),
+                'PORT': os.getenv('DB_PORT', '5432'),
+                'OPTIONS': {
+                    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+                },
+            }
+        }
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -144,14 +156,19 @@ REST_FRAMEWORK = {
     }
 }
 
-# CORS settings for production
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://0.0.0.0:3000",
-    "https://your-domain.com",
-]
-CORS_ALLOW_ALL_ORIGINS = False
+# CORS settings - Dynamic based on environment
+if DEBUG:
+    CORS_ALLOWED_ORIGINS = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "http://0.0.0.0:3000",
+    ]
+    CORS_ALLOW_ALL_ORIGINS = True
+else:
+    # Production CORS settings
+    CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')
+    CORS_ALLOW_ALL_ORIGINS = False
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_PREFLIGHT_MAX_AGE = 86400
 
@@ -186,12 +203,17 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@portfolio.com')
 # Production security settings
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
 SECURE_REDIRECT_EXEMPT = []
 SECURE_SSL_REDIRECT = os.getenv('ENABLE_SSL_REDIRECT', 'False').lower() == 'true'
 SESSION_COOKIE_SECURE = os.getenv('ENABLE_SSL_REDIRECT', 'False').lower() == 'true'
 CSRF_COOKIE_SECURE = os.getenv('ENABLE_SSL_REDIRECT', 'False').lower() == 'true'
+
+# Additional security headers
+if not DEBUG:
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 
 # Session configuration
 SESSION_COOKIE_AGE = 86400  # 24 hours
@@ -236,18 +258,18 @@ LOGGING = {
         },
     },
     'root': {
-        'handlers': ['console', 'file'],
+        'handlers': ['console'],
         'level': 'INFO',
     },
     'loggers': {
         'django': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
             'level': 'INFO',
             'propagate': False,
         },
         'portfolio': {
-            'handlers': ['console', 'file'],
-            'level': 'DEBUG',
+            'handlers': ['console'],
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': False,
         },
     },

@@ -1,9 +1,9 @@
-
 from django.http import Http404, HttpResponse
 from django.conf import settings
 from PIL import Image
 import os
 from io import BytesIO
+from django.utils.deprecation import MiddlewareMixin
 
 class ImageOptimizationMiddleware:
     """
@@ -65,3 +65,38 @@ class ImageOptimizationMiddleware:
                 response = HttpResponse(f.read(), content_type='image/jpeg')
                 response['Cache-Control'] = 'public, max-age=31536000'
                 return response
+
+class SecurityHeadersMiddleware(MiddlewareMixin):
+    """
+    Middleware to add security headers to responses
+    """
+
+    def process_response(self, request, response):
+        # Content Security Policy
+        if not settings.DEBUG:
+            response['Content-Security-Policy'] = (
+                "default-src 'self'; "
+                "script-src 'self' 'unsafe-inline' 'unsafe-eval'; "
+                "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+                "font-src 'self' https://fonts.gstatic.com; "
+                "img-src 'self' data: https:; "
+                "connect-src 'self' https:; "
+                "frame-ancestors 'none';"
+            )
+
+        # X-Frame-Options
+        response['X-Frame-Options'] = 'DENY'
+
+        # Referrer Policy
+        response['Referrer-Policy'] = 'strict-origin-when-cross-origin'
+
+        # Feature Policy / Permissions Policy
+        response['Permissions-Policy'] = (
+            "geolocation=(), microphone=(), camera=(), "
+            "payment=(), usb=(), magnetometer=(), gyroscope=()"
+        )
+
+        # X-Content-Type-Options
+        response['X-Content-Type-Options'] = 'nosniff'
+
+        return response

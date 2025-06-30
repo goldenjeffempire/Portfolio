@@ -1,65 +1,109 @@
-import axios from 'axios'
 
-// Determine API base URL based on environment
-const API_BASE_URL = import.meta.env.PROD
-  ? (import.meta.env.VITE_PROD_API_BASE_URL || 'https://your-backend-app.replit.app/api')
-  : (import.meta.env.VITE_API_BASE_URL || 'http://0.0.0.0:8000/api');
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
+  (import.meta.env.DEV ? 'http://0.0.0.0:8000/api' : '/api');
 
-// Create axios instance with base configuration
+import axios from 'axios';
+
+// Create axios instance with proper configuration
 const api = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'Accept': 'application/json',
   },
 });
 
 // Request interceptor
 api.interceptors.request.use(
   (config) => {
+    // Add CSRF token if available
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
+    if (csrfToken) {
+      config.headers['X-CSRFToken'] = csrfToken;
+    }
     return config;
   },
-  (error) => {
-    console.error('Request error:', error);
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Response interceptor for global error handling
+// Response interceptor with retry logic
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
-    if (error.code === 'ECONNABORTED') {
-      console.error('Request timeout');
-    } else if (error.response) {
-      console.error('API Error:', error.response.status, error.response.data);
-    } else if (error.request) {
-      console.error('Network Error:', error.message);
+  async (error) => {
+    const { config, response } = error;
+    
+    // Retry logic for network errors
+    if (!response && !config._retry) {
+      config._retry = true;
+      config._retryCount = (config._retryCount || 0) + 1;
+      
+      if (config._retryCount <= 3) {
+        await new Promise(resolve => setTimeout(resolve, 1000 * config._retryCount));
+        return api(config);
+      }
     }
+    
     return Promise.reject(error);
   }
 );
 
-// API endpoints
+// Portfolio API methods
 export const portfolioAPI = {
-  // Get profile data
-  getProfile: () => api.get('/profile/'),
+  // Get all portfolio data
+  getPortfolioData: async () => {
+    try {
+      const response = await api.get('/portfolio/');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching portfolio data:', error);
+      throw new Error('Failed to load portfolio data. Please try again later.');
+    }
+  },
 
-  // Get skills
-  getSkills: () => api.get('/skills/'),
+  // Get specific sections
+  getProjects: async () => {
+    try {
+      const response = await api.get('/portfolio/projects/');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      return [];
+    }
+  },
 
-  // Get experience
-  getExperience: () => api.get('/experience/'),
+  getSkills: async () => {
+    try {
+      const response = await api.get('/portfolio/skills/');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+      return [];
+    }
+  },
 
-  // Get projects
-  getProjects: () => api.get('/projects/'),
+  getExperience: async () => {
+    try {
+      const response = await api.get('/portfolio/experience/');
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching experience:', error);
+      return [];
+    }
+  },
 
-  // Get education
-  getEducation: () => api.get('/education/'),
+  // Contact form submission
+  submitContactForm: async (formData) => {
+    try {
+      const response = await api.post('/portfolio/contact/', formData);
+      return response.data;
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      if (error.response?.status === 429) {
+        throw new Error('Too many requests. Please try again later.');
+      }
+      throw new Error('Failed to send message. Please try again.');
+    }
+  },
+};
 
-  // Send contact message
-  sendContactMessage: (data) => api.post('/contact/', data),
-}
-
-export default api
+export default api;

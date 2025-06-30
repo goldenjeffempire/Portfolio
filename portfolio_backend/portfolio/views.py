@@ -1,161 +1,216 @@
-from rest_framework import viewsets, status
-from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import AllowAny
-from rest_framework.response import Response
+
+from django.shortcuts import render
+from django.http import JsonResponse, Http404
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 from django.core.mail import send_mail
 from django.conf import settings
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
-from django.core.cache import cache
-from django.utils import timezone
-import logging
-import json
-
-from .models import Profile, Skill, Experience, Project, Education, ContactMessage
+from rest_framework.decorators import api_view, throttle_classes
+from rest_framework.response import Response
+from rest_framework.throttling import AnonRateThrottle
+from rest_framework import status
+from .models import Profile, Project, Skill, Experience, Education
 from .serializers import (
-    ProfileSerializer, SkillSerializer, ExperienceSerializer,
-    ProjectSerializer, EducationSerializer, ContactMessageSerializer
+    ProfileSerializer, ProjectSerializer, SkillSerializer, 
+    ExperienceSerializer, EducationSerializer
 )
+import json
+import logging
 
 logger = logging.getLogger(__name__)
 
-# Profile ViewSet
-@method_decorator(cache_page(60 * 15), name='list')
-class ProfileViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-    permission_classes = [AllowAny]
-
-# Skill ViewSet
-@method_decorator(cache_page(60 * 15), name='list')
-class SkillViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Skill.objects.all()  # ✅ Added for DRF router basename detection
-    serializer_class = SkillSerializer
-    permission_classes = [AllowAny]
-
-    def get_queryset(self):
-        queryset = Skill.objects.all()
-        category = self.request.query_params.get('category')
-        featured = self.request.query_params.get('featured')
-        if category:
-            queryset = queryset.filter(category__icontains=category)
-        if featured and featured.lower() == 'true':
-            queryset = queryset.filter(is_featured=True)
-        return queryset.order_by('category', '-proficiency_level')
-
-# Experience ViewSet
-@method_decorator(cache_page(60 * 15), name='list')
-class ExperienceViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Experience.objects.all().order_by('-start_date')
-    serializer_class = ExperienceSerializer
-    permission_classes = [AllowAny]
-
-# Project ViewSet
-@method_decorator(cache_page(60 * 15), name='list')
-class ProjectViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Project.objects.all()  # ✅ Added for DRF router
-    serializer_class = ProjectSerializer
-    permission_classes = [AllowAny]
-
-    def get_queryset(self):
-        queryset = Project.objects.all()
-        category = self.request.query_params.get('category')
-        featured = self.request.query_params.get('featured')
-        status_filter = self.request.query_params.get('status')
-        if category:
-            queryset = queryset.filter(category__icontains=category)
-        if featured and featured.lower() == 'true':
-            queryset = queryset.filter(is_featured=True)
-        if status_filter:
-            queryset = queryset.filter(status=status_filter)
-        return queryset.order_by('-is_featured', '-created_at')
-
-# Education ViewSet
-@method_decorator(cache_page(60 * 15), name='list')
-class EducationViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Education.objects.all().order_by('-end_date', 'order')
-    serializer_class = EducationSerializer
-    permission_classes = [AllowAny]
-
-# Contact Message View
-@api_view(['POST'])
-@permission_classes([AllowAny])
-@csrf_exempt
-def contact_view(request):
-    try:
-        data = json.loads(request.body)
-        for field in ['name', 'email', 'subject', 'message']:
-            if not data.get(field):
-                return Response({
-                    'error': f'{field.title()} is required', 'success': False
-                }, status=status.HTTP_400_BAD_REQUEST)
-
-        contact_message = ContactMessage.objects.create(**data)
-
-        # Send email if configured
-        try:
-            if settings.EMAIL_HOST_USER:
-                send_mail(
-                    subject=f"Portfolio Contact: {data['subject']}",
-                    message=f"Name: {data['name']}\nEmail: {data['email']}\n\nMessage:\n{data['message']}",
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    recipient_list=[settings.EMAIL_HOST_USER],
-                )
-        except Exception as e:
-            logger.warning(f"Email send failed: {e}")
-
-        return Response({
-            'message': 'Message received. I will get back to you.',
-            'success': True,
-            'id': contact_message.id
-        }, status=status.HTTP_201_CREATED)
-
-    except json.JSONDecodeError:
-        return Response({'error': 'Invalid JSON', 'success': False}, status=400)
-    except Exception as e:
-        logger.error(f"Contact error: {e}")
-        return Response({'error': 'Server error', 'success': False}, status=500)
-
-# Portfolio Stats View
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def api_stats(request):
-    try:
-        stats = cache.get('portfolio_stats')
-        if not stats:
-            stats = {
-                'profile_count': Profile.objects.count(),
-                'skills_count': Skill.objects.count(),
-                'experience_count': Experience.objects.count(),
-                'projects_count': Project.objects.count(),
-                'education_count': Education.objects.count(),
-                'messages_count': ContactMessage.objects.count(),
-                'featured_skills': Skill.objects.filter(is_featured=True).count(),
-                'featured_projects': Project.objects.filter(is_featured=True).count(),
-                'unread_messages': ContactMessage.objects.filter(is_read=False).count(),
-            }
-            cache.set('portfolio_stats', stats, 60 * 30)
-        return Response(stats)
-    except Exception as e:
-        logger.error(f"Stats API error: {e}")
-        return Response({'error': 'Failed to fetch statistics'}, status=500)
-
-# Health Check View
-@api_view(['GET'])
-@permission_classes([AllowAny])
-def health_check(request):
-    try:
-        Profile.objects.exists()
-        return Response({'status': 'healthy', 'timestamp': timezone.now().isoformat()})
-    except Exception as e:
-        logger.error(f"Health check error: {e}")
-        return Response({'status': 'unhealthy', 'error': str(e)}, status=503)
-
 # Custom error handlers
 def custom_404(request, exception=None):
-    return JsonResponse({'error': 'Not Found', 'status_code': 404}, status=404)
+    """Custom 404 error handler"""
+    if request.path.startswith('/api/'):
+        return JsonResponse({
+            'error': 'Not Found',
+            'message': 'The requested resource was not found.',
+            'status_code': 404
+        }, status=404)
+    
+    return render(request, '404.html', status=404)
 
 def custom_500(request):
-    return JsonResponse({'error': 'Server Error', 'status_code': 500}, status=500)
+    """Custom 500 error handler"""
+    if request.path.startswith('/api/'):
+        return JsonResponse({
+            'error': 'Internal Server Error',
+            'message': 'An unexpected error occurred. Please try again later.',
+            'status_code': 500
+        }, status=500)
+    
+    return render(request, '500.html', status=500)
+
+# API Views
+@api_view(['GET'])
+@cache_page(60 * 15)  # Cache for 15 minutes
+def portfolio_overview(request):
+    """Get complete portfolio overview"""
+    try:
+        profile = Profile.objects.first()
+        projects = Project.objects.filter(is_featured=True)[:6]  # Featured projects only
+        skills = Skill.objects.all()
+        experience = Experience.objects.all().order_by('-start_date')[:3]  # Recent experience
+        
+        data = {
+            'profile': ProfileSerializer(profile).data if profile else None,
+            'projects': ProjectSerializer(projects, many=True).data,
+            'skills': SkillSerializer(skills, many=True).data,
+            'experience': ExperienceSerializer(experience, many=True).data,
+        }
+        
+        return Response(data)
+    except Exception as e:
+        logger.error(f"Error in portfolio_overview: {str(e)}")
+        return Response(
+            {'error': 'Failed to fetch portfolio data'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+@cache_page(60 * 30)  # Cache for 30 minutes
+def projects_list(request):
+    """Get all projects"""
+    try:
+        projects = Project.objects.all().order_by('-created_at')
+        serializer = ProjectSerializer(projects, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        logger.error(f"Error in projects_list: {str(e)}")
+        return Response(
+            {'error': 'Failed to fetch projects'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+def project_detail(request, pk):
+    """Get specific project details"""
+    try:
+        project = Project.objects.get(pk=pk)
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)
+    except Project.DoesNotExist:
+        return Response(
+            {'error': 'Project not found'}, 
+            status=status.HTTP_404_NOT_FOUND
+        )
+    except Exception as e:
+        logger.error(f"Error in project_detail: {str(e)}")
+        return Response(
+            {'error': 'Failed to fetch project details'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+@cache_page(60 * 60)  # Cache for 1 hour
+def skills_list(request):
+    """Get all skills"""
+    try:
+        skills = Skill.objects.all().order_by('category', '-proficiency')
+        serializer = SkillSerializer(skills, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        logger.error(f"Error in skills_list: {str(e)}")
+        return Response(
+            {'error': 'Failed to fetch skills'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['GET'])
+@cache_page(60 * 60)  # Cache for 1 hour
+def experience_list(request):
+    """Get all experience"""
+    try:
+        experience = Experience.objects.all().order_by('-start_date')
+        serializer = ExperienceSerializer(experience, many=True)
+        return Response(serializer.data)
+    except Exception as e:
+        logger.error(f"Error in experience_list: {str(e)}")
+        return Response(
+            {'error': 'Failed to fetch experience'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+@api_view(['POST'])
+@throttle_classes([AnonRateThrottle])
+def contact_form(request):
+    """Handle contact form submissions"""
+    try:
+        data = json.loads(request.body)
+        
+        # Validate required fields
+        required_fields = ['name', 'email', 'message']
+        for field in required_fields:
+            if not data.get(field):
+                return Response(
+                    {'error': f'{field.capitalize()} is required'}, 
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        
+        name = data.get('name')
+        email = data.get('email')
+        subject = data.get('subject', 'Contact Form Submission')
+        message = data.get('message')
+        
+        # Send email
+        email_subject = f"Portfolio Contact: {subject}"
+        email_message = f"""
+        Name: {name}
+        Email: {email}
+        Subject: {subject}
+        
+        Message:
+        {message}
+        """
+        
+        if settings.EMAIL_HOST_USER:
+            try:
+                send_mail(
+                    email_subject,
+                    email_message,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [settings.EMAIL_HOST_USER],
+                    fail_silently=False,
+                )
+                
+                logger.info(f"Contact form submitted by {name} ({email})")
+                return Response({
+                    'success': True,
+                    'message': 'Thank you for your message! I will get back to you soon.'
+                })
+            except Exception as e:
+                logger.error(f"Failed to send email: {str(e)}")
+                return Response(
+                    {'error': 'Failed to send message. Please try again later.'}, 
+                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                )
+        else:
+            logger.warning("Email not configured - contact form submission logged only")
+            return Response({
+                'success': True,
+                'message': 'Thank you for your message! I will get back to you soon.'
+            })
+            
+    except json.JSONDecodeError:
+        return Response(
+            {'error': 'Invalid JSON data'}, 
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    except Exception as e:
+        logger.error(f"Error in contact_form: {str(e)}")
+        return Response(
+            {'error': 'An unexpected error occurred'}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+# Health check endpoint
+@api_view(['GET'])
+def health_check(request):
+    """Health check endpoint for monitoring"""
+    return Response({
+        'status': 'healthy',
+        'timestamp': timezone.now().isoformat()
+    })

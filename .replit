@@ -6,3 +6,49 @@ channel = "stable-24_05"
 
 [deployment]
 run = ["sh", "-c", "npm run start"]
+
+[workflows]
+runButton = "Start Development"
+
+[[workflows.workflow]]
+name = "Run Tests"
+author = 44436856
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_frontend && npm run lint"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_backend && python manage.py test"
+
+[[workflows.workflow]]
+name = "Start Development"
+author = 44436856
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_backend && python manage.py runserver 0.0.0.0:8000"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_frontend && npm run dev -- --host 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Build Production"
+author = 44436856
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_frontend && npm run build"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_backend && python manage.py collectstatic --noinput"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_backend && python manage.py migrate"
