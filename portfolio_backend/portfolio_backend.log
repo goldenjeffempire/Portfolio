@@ -28,3 +28,6 @@ INFO 2025-06-26 00:57:06,019 basehttp 44185 125854776551104 "GET / HTTP/1.1" 302
 INFO 2025-06-26 00:57:06,192 basehttp 44185 125854776551104 "GET /api/ HTTP/1.1" 200 250
 INFO 2025-06-26 01:57:24,571 autoreload 7 138037545892736 Watching for file changes with StatReloader
 INFO 2025-06-26 02:13:49,405 autoreload 7 136352914652032 Watching for file changes with StatReloader
+INFO 2025-06-30 11:59:16,531 autoreload 3637 140544159532544 Watching for file changes with StatReloader
+INFO 2025-06-30 11:59:17,973 autoreload 3637 140544159532544 /home/runner/workspace/portfolio_backend/portfolio/models.py changed, reloading.
+INFO 2025-06-30 11:59:18,952 autoreload 3645 139624886851072 Watching for file changes with StatReloader

@@ -1,59 +1,54 @@
+
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  base: './', // ✅ ADD THIS LINE
   plugins: [react()],
-  server: {
-    host: '0.0.0.0',
-    port: 3000,
-    strictPort: true,
-    hmr: {
-      port: 3001
-    }
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, './src'),
+    },
   },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    },
+    target: 'es2015',
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          utils: ['axios']
-        }
-      }
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['lucide-react'],
+        },
+      },
     },
-    chunkSizeWarningLimit: 1000
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+    },
   },
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'axios']
-  },
-  resolve: {
-    alias: {
-      '@': resolve(__dirname, 'src'),
-      '@components': resolve(__dirname, 'src/components'),
-      '@pages': resolve(__dirname, 'src/pages'),
-      '@utils': resolve(__dirname, 'src/utils'),
-      '@services': resolve(__dirname, 'src/services')
-    }
-  },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
-    __DEV__: process.env.NODE_ENV !== 'production'
+  server: {
+    host: '0.0.0.0',
+    port: 3000,
+    open: false,
+    proxy: {
+      '/api': {
+        target: 'http://0.0.0.0:5000',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
   preview: {
     host: '0.0.0.0',
     port: 3000,
-    strictPort: true
-  }
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+  },
 })
