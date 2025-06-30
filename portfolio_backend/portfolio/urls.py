@@ -1,16 +1,32 @@
 
-from django.urls import path
-from .views import (
-    portfolio_overview, projects_list, project_detail,
-    skills_list, experience_list, contact_form, health_check
-)
+"""
+Portfolio App URLs - Production Ready
+"""
+
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from . import views
+
+# Create router for ViewSets
+router = DefaultRouter()
+router.register(r'profiles', views.ProfileViewSet, basename='profile')
+router.register(r'projects', views.ProjectViewSet, basename='project')
+router.register(r'skills', views.SkillViewSet, basename='skill')
+router.register(r'experiences', views.ExperienceViewSet, basename='experience')
+
+app_name = 'portfolio'
 
 urlpatterns = [
-    path('', portfolio_overview, name='portfolio-overview'),
-    path('projects/', projects_list, name='projects-list'),
-    path('projects/<int:pk>/', project_detail, name='project-detail'),
-    path('skills/', skills_list, name='skills-list'),
-    path('experience/', experience_list, name='experience-list'),
-    path('contact/', contact_form, name='contact-form'),
-    path('health/', health_check, name='health-check'),
+    # Health check
+    path('health/', views.health_check, name='health'),
+    
+    # API endpoints
+    path('profile/', views.get_profile, name='profile'),
+    path('projects/', views.get_projects, name='projects'),
+    path('skills/', views.get_skills, name='skills'),
+    path('experience/', views.get_experience, name='experience'),
+    path('contact/', views.contact_form, name='contact'),
+    
+    # Include router URLs
+    path('', include(router.urls)),
 ]

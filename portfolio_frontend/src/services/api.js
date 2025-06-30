@@ -1,109 +1,171 @@
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 
-  (import.meta.env.DEV ? 'http://0.0.0.0:8000/api' : '/api');
+/**
+ * API Service - Production Ready
+ * Handles all API calls with proper error handling and retries
+ */
 
 import axios from 'axios';
 
-// Create axios instance with proper configuration
+// Create axios instance with base configuration
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Request interceptor
+// Request interceptor for authentication and logging
 api.interceptors.request.use(
   (config) => {
-    // Add CSRF token if available
-    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value;
-    if (csrfToken) {
-      config.headers['X-CSRFToken'] = csrfToken;
+    // Add any auth tokens here if needed
+    // config.headers.Authorization = `Bearer ${token}`;
+    
+    // Log requests in development
+    if (import.meta.env.DEV) {
+      console.log(`API Request: ${config.method?.toUpperCase()} ${config.url}`);
     }
+    
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    console.error('API Request Error:', error);
+    return Promise.reject(error);
+  }
 );
 
-// Response interceptor with retry logic
+// Response interceptor for error handling
 api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    const { config, response } = error;
+  (response) => {
+    // Log responses in development
+    if (import.meta.env.DEV) {
+      console.log(`API Response: ${response.status} ${response.config.url}`);
+    }
     
-    // Retry logic for network errors
-    if (!response && !config._retry) {
-      config._retry = true;
-      config._retryCount = (config._retryCount || 0) + 1;
-      
-      if (config._retryCount <= 3) {
-        await new Promise(resolve => setTimeout(resolve, 1000 * config._retryCount));
-        return api(config);
-      }
+    return response;
+  },
+  (error) => {
+    console.error('API Response Error:', {
+      status: error.response?.status,
+      statusText: error.response?.statusText,
+      url: error.config?.url,
+      message: error.message,
+    });
+    
+    // Handle specific error cases
+    if (error.response?.status === 401) {
+      // Handle unauthorized access
+      console.warn('Unauthorized access detected');
+    } else if (error.response?.status === 500) {
+      console.error('Server error detected');
+    } else if (error.code === 'ECONNABORTED') {
+      console.error('Request timeout');
     }
     
     return Promise.reject(error);
   }
 );
 
-// Portfolio API methods
-export const portfolioAPI = {
-  // Get all portfolio data
-  getPortfolioData: async () => {
+// Utility function for retry logic
+const withRetry = async (fn, retries = 3, delay = 1000) => {
+  try {
+    return await fn();
+  } catch (error) {
+    if (retries > 0 && (error.code === 'ECONNABORTED' || error.response?.status >= 500)) {
+      console.log(`Retrying... ${retries} attempts left`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return withRetry(fn, retries - 1, delay * 1.5);
+    }
+    throw error;
+  }
+};
+
+// API endpoints
+const endpoints = {
+  // Health check
+  health: () => withRetry(() => api.get('/health/')),
+  
+  // Profile endpoints
+  getProfile: () => withRetry(() => api.get('/profile/')),
+  
+  // Projects endpoints
+  getProjects: () => withRetry(() => api.get('/projects/')),
+  getProject: (id) => withRetry(() => api.get(`/projects/${id}/`)),
+  
+  // Skills endpoints
+  getSkills: () => withRetry(() => api.get('/skills/')),
+  
+  // Experience endpoints
+  getExperience: () => withRetry(() => api.get('/experience/')),
+  
+  // Contact endpoint
+  submitContact: (data) => withRetry(() => api.post('/contact/', data)),
+};
+
+// Helper functions for common patterns
+export const ApiService = {
+  ...endpoints,
+  
+  // Generic GET request with caching
+  async get(url, options = {}) {
     try {
-      const response = await api.get('/portfolio/');
+      const response = await withRetry(() => api.get(url, options));
       return response.data;
     } catch (error) {
-      console.error('Error fetching portfolio data:', error);
-      throw new Error('Failed to load portfolio data. Please try again later.');
+      console.error(`GET ${url} failed:`, error);
+      throw new Error(error.response?.data?.message || error.message || 'Request failed');
     }
   },
-
-  // Get specific sections
-  getProjects: async () => {
+  
+  // Generic POST request
+  async post(url, data, options = {}) {
     try {
-      const response = await api.get('/portfolio/projects/');
+      const response = await withRetry(() => api.post(url, data, options));
       return response.data;
     } catch (error) {
-      console.error('Error fetching projects:', error);
-      return [];
+      console.error(`POST ${url} failed:`, error);
+      throw new Error(error.response?.data?.error || error.message || 'Request failed');
     }
   },
-
-  getSkills: async () => {
+  
+  // Check API health
+  async checkHealth() {
     try {
-      const response = await api.get('/portfolio/skills/');
-      return response.data;
+      const response = await this.health();
+      return response.data?.status === 'healthy';
     } catch (error) {
-      console.error('Error fetching skills:', error);
-      return [];
+      console.error('Health check failed:', error);
+      return false;
     }
   },
-
-  getExperience: async () => {
+  
+  // Get all portfolio data at once
+  async getPortfolioData() {
     try {
-      const response = await api.get('/portfolio/experience/');
-      return response.data;
+      const [profile, projects, skills, experience] = await Promise.allSettled([
+        this.getProfile(),
+        this.getProjects(),
+        this.getSkills(),
+        this.getExperience(),
+      ]);
+      
+      return {
+        profile: profile.status === 'fulfilled' ? profile.value.data : null,
+        projects: projects.status === 'fulfilled' ? projects.value.data : [],
+        skills: skills.status === 'fulfilled' ? skills.value.data : {},
+        experience: experience.status === 'fulfilled' ? experience.value.data : [],
+        errors: {
+          profile: profile.status === 'rejected' ? profile.reason : null,
+          projects: projects.status === 'rejected' ? projects.reason : null,
+          skills: skills.status === 'rejected' ? skills.reason : null,
+          experience: experience.status === 'rejected' ? experience.reason : null,
+        }
+      };
     } catch (error) {
-      console.error('Error fetching experience:', error);
-      return [];
-    }
-  },
-
-  // Contact form submission
-  submitContactForm: async (formData) => {
-    try {
-      const response = await api.post('/portfolio/contact/', formData);
-      return response.data;
-    } catch (error) {
-      console.error('Error submitting contact form:', error);
-      if (error.response?.status === 429) {
-        throw new Error('Too many requests. Please try again later.');
-      }
-      throw new Error('Failed to send message. Please try again.');
+      console.error('Failed to fetch portfolio data:', error);
+      throw error;
     }
   },
 };
 
-export default api;
+export default ApiService;

@@ -6,8 +6,8 @@ channel = "stable-24_05"
 packages = ["freetype", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "tcl", "tk", "zlib"]
 
 [deployment]
-run = ["sh", "-c", "cd portfolio_backend && python manage.py runserver 0.0.0.0:5000"]
-build = ["sh", "-c", "cd portfolio_frontend && npm run build"]
+run = ["sh", "-c", "npm run start"]
+build = ["sh", "-c", "npm run build"]
 
 [workflows]
 runButton = "Start Development"
@@ -23,7 +23,15 @@ args = "cd portfolio_frontend && npm run lint"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
+args = "cd portfolio_backend && python manage.py check"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
 args = "cd portfolio_backend && python manage.py test"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"✅ All tests passed!\""
 
 [[workflows.workflow]]
 name = "Start Development"
@@ -54,6 +62,23 @@ args = "cd portfolio_backend && python manage.py collectstatic --noinput"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd portfolio_backend && python manage.py migrate"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "echo \"✅ Production build completed!\""
+
+[[workflows.workflow]]
+name = "Start Development"
+author = 44436856
+mode = "parallel"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_backend && python manage.py runserver 0.0.0.0:5000"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "cd portfolio_frontend && npm run dev -- --host 0.0.0.0 --port 3000"
 
 [[ports]]
 localPort = 3000

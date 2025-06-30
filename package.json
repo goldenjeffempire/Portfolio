@@ -1,24 +1,20 @@
+
 {
-  "name": "portfolio-fullstack",
+  "name": "portfolio-website",
   "version": "1.0.0",
-  "description": "Full-stack portfolio website with Django and React",
+  "description": "Full-stack portfolio website with React and Django",
+  "private": true,
   "scripts": {
-    "start": "./start.sh",
-    "start:backend": "./start_backend.sh",
-    "start:frontend": "./start_frontend.sh",
-    "build": "cd portfolio_frontend && npm run build",
-    "install:all": "cd portfolio_backend && pip install -r requirements.txt && cd ../portfolio_frontend && npm install"
+    "install": "cd portfolio_frontend && npm install && cd ../portfolio_backend && pip install -r requirements.txt",
+    "build": "cd portfolio_frontend && npm run build && cd ../portfolio_backend && python manage.py collectstatic --noinput && python manage.py migrate",
+    "start": "cd portfolio_backend && gunicorn portfolio_backend.wsgi:application --bind 0.0.0.0:5000",
+    "dev:frontend": "cd portfolio_frontend && npm run dev -- --host 0.0.0.0 --port 3000",
+    "dev:backend": "cd portfolio_backend && python manage.py runserver 0.0.0.0:5000",
+    "test": "cd portfolio_backend && python manage.py test && cd ../portfolio_frontend && npm run lint",
+    "lint": "cd portfolio_frontend && npm run lint && cd ../portfolio_backend && python -m flake8 .",
+    "seed": "cd portfolio_backend && python manage.py seed_data"
   },
-  "keywords": [
-    "portfolio",
-    "django",
-    "react",
-    "full-stack"
-  ],
-  "author": "Jeffery Onome Emuodafevwa",
-  "license": "MIT",
-  "dependencies": {
-    "lucide-react": "^0.525.0",
-    "react-helmet-async": "^2.0.5"
-  }
+  "keywords": ["portfolio", "react", "django", "fullstack"],
+  "author": "Jeffery Onome Emuodafevware",
+  "license": "MIT"
 }
