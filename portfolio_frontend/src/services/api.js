@@ -55,35 +55,66 @@ export const portfolioApi = {
 
   // Get profile data
   async getProfile() {
-    return await makeRequest('/profile/');
+    try {
+      const response = await makeRequest('/portfolio/profile/');
+      return response.length > 0 ? response[0] : response;
+    } catch (error) {
+      console.error('Error fetching profile:', error);
+      return null;
+    }
   },
 
   // Get projects
   async getProjects() {
-    return await makeRequest('/projects/');
+    try {
+      return await makeRequest('/portfolio/projects/');
+    } catch (error) {
+      console.error('Error fetching projects:', error);
+      return [];
+    }
   },
 
   // Get skills
   async getSkills() {
-    return await makeRequest('/skills/');
+    try {
+      return await makeRequest('/portfolio/skills/');
+    } catch (error) {
+      console.error('Error fetching skills:', error);
+      return [];
+    }
   },
 
   // Get experience
   async getExperience() {
-    return await makeRequest('/experience/');
+    try {
+      return await makeRequest('/portfolio/experience/');
+    } catch (error) {
+      console.error('Error fetching experience:', error);
+      return [];
+    }
   },
 
   // Submit contact form
   async submitContact(contactData) {
-    return await makeRequest('/contact/', {
-      method: 'POST',
-      body: contactData,
-    });
+    try {
+      return await makeRequest('/portfolio/contact/', {
+        method: 'POST',
+        body: contactData,
+      });
+    } catch (error) {
+      console.error('Error submitting contact:', error);
+      throw error;
+    }
   },
 
   // Health check
   async healthCheck() {
-    return await makeRequest('/health/');
+    try {
+      return await makeRequest('/portfolio/health/');
+    } catch (error) {
+      console.error('Error in health check:', error);
+      return { status: 'error' };
+    }
   }
 };
 

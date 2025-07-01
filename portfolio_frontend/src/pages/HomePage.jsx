@@ -172,14 +172,14 @@ const HomePage = () => {
                   <Lightbulb size={16} className="mr-2" />
                   Available for exciting opportunities
                 </motion.div>
-                
+
                 <h1 className="text-5xl lg:text-7xl font-display font-bold text-neutral-900 dark:text-neutral-100 leading-tight">
                   Hi, I'm{' '}
                   <span className="text-gradient bg-gradient-to-r from-primary-600 via-accent-600 to-secondary-600 bg-clip-text text-transparent">
                     Jeffery
                   </span>
                 </h1>
-                
+
                 <div className="h-16 flex items-center">
                   <motion.h2
                     key={currentRole}
@@ -213,7 +213,7 @@ const HomePage = () => {
                     <ArrowRight size={20} className="ml-2" />
                   </motion.button>
                 </Link>
-                
+
                 <Link to="/contact">
                   <motion.button
                     className="btn-outline px-8 py-4 text-lg font-semibold"
@@ -460,7 +460,7 @@ const HomePage = () => {
                 <ArrowRight size={20} />
               </motion.button>
             </Link>
-            
+
             <Link to="/projects">
               <motion.button
                 className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white hover:text-primary-900 transition-all flex items-center space-x-2"
@@ -486,13 +486,28 @@ import LoadingSpinner from '../components/ui/LoadingSpinner';
 const HomePage = () => {
   const [portfolioData, setPortfolioData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const data = await portfolioApi.getPortfolioData();
-        setPortfolioData(data);
+        // Fetch data with individual error handling
+        const [profile, projects, skills, experience] = await Promise.allSettled([
+          portfolioApi.getProfile(),
+          portfolioApi.getProjects(),
+          portfolioApi.getSkills(),
+          portfolioApi.getExperience()
+        ]);
+
+        setPortfolioData({
+          profile: profile.status === 'fulfilled' ? profile.value : null,
+          projects: projects.status === 'fulfilled' ? projects.value : [],
+          skills: skills.status === 'fulfilled' ? skills.value : [],
+          experience: experience.status === 'fulfilled' ? experience.value : []
+        });
       } catch (error) {
+        setError('Failed to load portfolio data');
         console.error('Error fetching portfolio data:', error);
       } finally {
         setLoading(false);
@@ -526,7 +541,7 @@ const HomePage = () => {
             <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto mb-12">
               {profile?.bio || 'Passionate about creating innovative digital solutions with modern technologies.'}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/projects"
@@ -584,7 +599,7 @@ const HomePage = () => {
                 Technologies I work with to bring ideas to life
               </p>
             </div>
-            
+
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
               {skills.map((skill, index) => (
                 <div
@@ -622,7 +637,7 @@ const HomePage = () => {
                 Some of my recent work
               </p>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {projects.map((project, index) => (
                 <div
@@ -679,7 +694,7 @@ const HomePage = () => {
                 </div>
               ))}
             </div>
-            
+
             <div className="text-center mt-12">
               <a
                 href="/projects"

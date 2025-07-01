@@ -59,7 +59,7 @@ const ContactPage = () => {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Contact Information
               </h2>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="bg-blue-100 dark:bg-blue-900 p-3 rounded-lg">
