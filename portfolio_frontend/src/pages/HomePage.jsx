@@ -478,10 +478,9 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
-import { portfolioAPI } from '../services/api';
+import { portfolioApi } from '../services/api';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const HomePage = () => {
@@ -491,7 +490,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await portfolioAPI.getPortfolioData();
+        const data = await portfolioApi.getPortfolioData();
         setPortfolioData(data);
       } catch (error) {
         console.error('Error fetching portfolio data:', error);

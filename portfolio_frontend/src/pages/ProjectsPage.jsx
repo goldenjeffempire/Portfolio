@@ -478,7 +478,7 @@ const ProjectsPage = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const data = await portfolioAPI.getProjects();
+        const data = await portfolioApi.getProjects();
         setProjects(data);
         setFilteredProjects(data);
       } catch (error) {
