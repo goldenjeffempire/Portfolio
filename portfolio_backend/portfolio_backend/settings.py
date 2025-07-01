@@ -24,9 +24,6 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '0.0.0.0',
-    '.replit.dev',
-    '.replit.co',
-    '.replit.app',
 ]
 
 # Add custom allowed hosts from environment
@@ -165,13 +162,10 @@ CORS_ALLOWED_ORIGINS = [
     "http://0.0.0.0:3000",
 ]
 
-# Add Replit domains
-if not DEBUG:
-    CORS_ALLOWED_ORIGINS.extend([
-        "https://*.replit.dev",
-        "https://*.replit.co",
-        "https://*.replit.app",
-    ])
+# Add production domains when needed
+# CORS_ALLOWED_ORIGINS.extend([
+#     "https://yourdomain.com",
+# ])
 
 CORS_ALLOW_CREDENTIALS = True
 
