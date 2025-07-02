@@ -31,3 +31,5 @@ INFO 2025-06-26 02:13:49,405 autoreload 7 136352914652032 Watching for file chan
 INFO 2025-06-30 11:59:16,531 autoreload 3637 140544159532544 Watching for file changes with StatReloader
 INFO 2025-06-30 11:59:17,973 autoreload 3637 140544159532544 /home/runner/workspace/portfolio_backend/portfolio/models.py changed, reloading.
 INFO 2025-06-30 11:59:18,952 autoreload 3645 139624886851072 Watching for file changes with StatReloader
+INFO 2025-07-01 20:13:58,177 autoreload 370 140390786971136 Watching for file changes with StatReloader
+INFO 2025-07-02 06:42:11,188 autoreload 1531 140030001657344 Watching for file changes with StatReloader

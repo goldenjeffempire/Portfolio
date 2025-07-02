@@ -3,6 +3,7 @@ run = "npm run start"
 
 [nix]
 channel = "stable-24_05"
+packages = ["freetype", "lcms2", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "tcl", "tk", "zlib"]
 
 [deployment]
 run = ["sh", "-c", "npm run start"]
@@ -22,3 +23,7 @@ args = "cd portfolio_backend && python manage.py runserver 0.0.0.0:5000"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "cd portfolio_frontend && npm run dev -- --host 0.0.0.0 --port 3000"
+
+[[ports]]
+localPort = 3000
+externalPort = 80
