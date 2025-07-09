@@ -1,4 +1,4 @@
-#!/home/jeff/Portfolio/portfolio_backend/portfolio-venv/bin/python3
+#!/data/data/com.termux/files/home/Portfolio/portfolio_backend/portfolio-venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys
