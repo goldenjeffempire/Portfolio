@@ -14,12 +14,12 @@ const makeRequest = async (url, options = {}) => {
         ...options.headers,
       },
       body: options.body ? JSON.stringify(options.body) : undefined,
-      credentials: 'omit', // Don't send cookies for CORS
+      credentials: 'omit',
     });
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      throw new Error(errorData.message || errorData.error || `HTTP error! status: ${response.status}`);
     }
 
     const data = await response.json();
@@ -64,7 +64,7 @@ export const portfolioApi = {
   async getProfile() {
     try {
       const response = await makeRequest('/portfolio/profile/');
-      return response.success ? response.data : response.length > 0 ? response[0] : response;
+      return response.success ? response.data : (Array.isArray(response) && response.length > 0 ? response[0] : response);
     } catch (error) {
       console.error('Error fetching profile:', error);
       return null;
@@ -75,7 +75,7 @@ export const portfolioApi = {
   async getProjects() {
     try {
       const response = await makeRequest('/portfolio/projects/');
-      return response.success ? response.data : response;
+      return response.success ? response.data : (Array.isArray(response) ? response : []);
     } catch (error) {
       console.error('Error fetching projects:', error);
       return [];
@@ -86,7 +86,7 @@ export const portfolioApi = {
   async getSkills() {
     try {
       const response = await makeRequest('/portfolio/skills/');
-      return response.success ? response.data : response;
+      return response.success ? response.data : (Array.isArray(response) ? response : {});
     } catch (error) {
       console.error('Error fetching skills:', error);
       return {};
@@ -97,7 +97,7 @@ export const portfolioApi = {
   async getExperience() {
     try {
       const response = await makeRequest('/portfolio/experience/');
-      return response.success ? response.data : response;
+      return response.success ? response.data : (Array.isArray(response) ? response : []);
     } catch (error) {
       console.error('Error fetching experience:', error);
       return [];
