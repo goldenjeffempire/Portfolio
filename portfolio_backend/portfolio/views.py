@@ -158,15 +158,21 @@ def get_profile(request):
         profile = Profile.objects.first()
         if not profile:
             return Response({
-                'error': 'Profile not found'
+                'error': 'Profile not found',
+                'data': None
             }, status=status.HTTP_404_NOT_FOUND)
         
         serializer = ProfileSerializer(profile)
-        return Response(serializer.data)
+        return Response({
+            'success': True,
+            'data': serializer.data
+        })
     except Exception as e:
         logger.error(f"Profile fetch error: {str(e)}")
         return Response({
-            'error': 'Failed to fetch profile'
+            'success': False,
+            'error': 'Failed to fetch profile',
+            'data': None
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
@@ -176,11 +182,18 @@ def get_projects(request):
     try:
         projects = Project.objects.filter(is_featured=True).order_by('-created_at')
         serializer = ProjectSerializer(projects, many=True)
-        return Response(serializer.data)
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'count': len(serializer.data)
+        })
     except Exception as e:
         logger.error(f"Projects fetch error: {str(e)}")
         return Response({
-            'error': 'Failed to fetch projects'
+            'success': False,
+            'error': 'Failed to fetch projects',
+            'data': [],
+            'count': 0
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
@@ -199,11 +212,18 @@ def get_skills(request):
                 skills_by_category[category] = []
             skills_by_category[category].append(skill_data)
         
-        return Response(skills_by_category)
+        return Response({
+            'success': True,
+            'data': skills_by_category,
+            'count': len(serializer.data)
+        })
     except Exception as e:
         logger.error(f"Skills fetch error: {str(e)}")
         return Response({
-            'error': 'Failed to fetch skills'
+            'success': False,
+            'error': 'Failed to fetch skills',
+            'data': {},
+            'count': 0
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['GET'])
@@ -213,9 +233,16 @@ def get_experience(request):
     try:
         experiences = Experience.objects.all().order_by('-start_date')
         serializer = ExperienceSerializer(experiences, many=True)
-        return Response(serializer.data)
+        return Response({
+            'success': True,
+            'data': serializer.data,
+            'count': len(serializer.data)
+        })
     except Exception as e:
         logger.error(f"Experience fetch error: {str(e)}")
         return Response({
-            'error': 'Failed to fetch experience'
+            'success': False,
+            'error': 'Failed to fetch experience',
+            'data': [],
+            'count': 0
         }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

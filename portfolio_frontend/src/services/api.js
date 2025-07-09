@@ -1,7 +1,7 @@
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://0.0.0.0:5000/api';
 
-// Helper function to make requests
+// Enhanced request handler with better error handling
 const makeRequest = async (url, options = {}) => {
   const fullUrl = `${API_BASE_URL}${url}`;
 
@@ -10,35 +10,50 @@ const makeRequest = async (url, options = {}) => {
       method: options.method || 'GET',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
         ...options.headers,
       },
       body: options.body ? JSON.stringify(options.body) : undefined,
+      credentials: 'omit', // Don't send cookies for CORS
     });
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('API request failed:', error);
     throw error;
   }
 };
 
-// API service methods
+// Enhanced API service methods
 export const portfolioApi = {
-  // Get all portfolio data
+  // Get all portfolio data with enhanced error handling
   async getPortfolioData() {
     try {
-      const [profile, projects, skills, experience] = await Promise.all([
+      const [profileRes, projectsRes, skillsRes, experienceRes] = await Promise.allSettled([
         this.getProfile(),
         this.getProjects(),
         this.getSkills(),
         this.getExperience()
       ]);
 
-      return { profile, projects, skills, experience };
+      return {
+        profile: profileRes.status === 'fulfilled' ? profileRes.value : null,
+        projects: projectsRes.status === 'fulfilled' ? projectsRes.value : [],
+        skills: skillsRes.status === 'fulfilled' ? skillsRes.value : {},
+        experience: experienceRes.status === 'fulfilled' ? experienceRes.value : [],
+        errors: {
+          profile: profileRes.status === 'rejected' ? profileRes.reason.message : null,
+          projects: projectsRes.status === 'rejected' ? projectsRes.reason.message : null,
+          skills: skillsRes.status === 'rejected' ? skillsRes.reason.message : null,
+          experience: experienceRes.status === 'rejected' ? experienceRes.reason.message : null,
+        }
+      };
     } catch (error) {
       console.error('Error fetching portfolio data:', error);
       throw error;
@@ -49,7 +64,7 @@ export const portfolioApi = {
   async getProfile() {
     try {
       const response = await makeRequest('/portfolio/profile/');
-      return response.length > 0 ? response[0] : response;
+      return response.success ? response.data : response.length > 0 ? response[0] : response;
     } catch (error) {
       console.error('Error fetching profile:', error);
       return null;
@@ -59,7 +74,8 @@ export const portfolioApi = {
   // Get projects
   async getProjects() {
     try {
-      return await makeRequest('/portfolio/projects/');
+      const response = await makeRequest('/portfolio/projects/');
+      return response.success ? response.data : response;
     } catch (error) {
       console.error('Error fetching projects:', error);
       return [];
@@ -69,17 +85,19 @@ export const portfolioApi = {
   // Get skills
   async getSkills() {
     try {
-      return await makeRequest('/portfolio/skills/');
+      const response = await makeRequest('/portfolio/skills/');
+      return response.success ? response.data : response;
     } catch (error) {
       console.error('Error fetching skills:', error);
-      return [];
+      return {};
     }
   },
 
   // Get experience
   async getExperience() {
     try {
-      return await makeRequest('/portfolio/experience/');
+      const response = await makeRequest('/portfolio/experience/');
+      return response.success ? response.data : response;
     } catch (error) {
       console.error('Error fetching experience:', error);
       return [];
@@ -89,10 +107,11 @@ export const portfolioApi = {
   // Submit contact form
   async submitContact(contactData) {
     try {
-      return await makeRequest('/portfolio/contact/', {
+      const response = await makeRequest('/portfolio/contact/', {
         method: 'POST',
         body: contactData,
       });
+      return response;
     } catch (error) {
       console.error('Error submitting contact:', error);
       throw error;
@@ -102,23 +121,49 @@ export const portfolioApi = {
   // Health check
   async healthCheck() {
     try {
-      return await makeRequest('/portfolio/health/');
+      const response = await makeRequest('/portfolio/health/');
+      return response;
     } catch (error) {
       console.error('Error in health check:', error);
-      return { status: 'error' };
+      return { status: 'error', message: error.message };
     }
   }
 };
 
-// Error handler utility
+// Enhanced error handler utility
 export const handleApiError = (error) => {
   if (error.response) {
-    return error.response.data.message || 'An error occurred';
+    return error.response.data?.message || error.response.data?.error || 'An error occurred';
   } else if (error.request) {
     return 'Network error. Please check your connection.';
   } else {
     return error.message || 'An unexpected error occurred';
   }
 };
+
+// Loading state utility
+export const createLoadingState = () => ({
+  isLoading: false,
+  error: null,
+  data: null,
+  
+  setLoading: function(loading) {
+    this.isLoading = loading;
+    if (loading) {
+      this.error = null;
+    }
+  },
+  
+  setError: function(error) {
+    this.error = error;
+    this.isLoading = false;
+  },
+  
+  setData: function(data) {
+    this.data = data;
+    this.isLoading = false;
+    this.error = null;
+  }
+});
 
 export default portfolioApi;
