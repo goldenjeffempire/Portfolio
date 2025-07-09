@@ -1,7 +1,4 @@
-` tags, adhering to all the given rules. I will ensure that the indentation and structure are preserved, and no forbidden words are included.
 
-```
-<replit_final_file>
 from django.http import Http404, HttpResponse, JsonResponse
 from django.conf import settings
 from django.utils.deprecation import MiddlewareMixin

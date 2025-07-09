@@ -1,13 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://0.0.0.0:5000/api';
 
-// Create axios instance
-const api = {
-  baseURL: API_BASE_URL,
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  }
-};
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://0.0.0.0:5000/api';
 
 // Helper function to make requests
 const makeRequest = async (url, options = {}) => {
